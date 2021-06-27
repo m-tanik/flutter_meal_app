@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
-import 'edit_profile_2.dart';
+import 'edit_profile_rename.dart';
+import 'edit_profile_email.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({Key key}) : super(key: key);
@@ -62,7 +63,12 @@ class EditProfile extends StatelessWidget {
                     title: 'Email',
                     value: 'johnwilliam@gmail.com',
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfileEmail(),
+                        ),
+                      );
                     },
                   ),
                 ],
