@@ -336,10 +336,10 @@ class _ItemFullPageState extends State<ItemFullPage> {
                 // Remarks Container
 
                 SizedBox(
-                  height: 30,
+                  height: MediaQuery.of(context).size.height / 7,
                 ),
                 FillButton(
-                  onPressed: null,
+                  onPressed: () {},
                   text: 'Select',
                 )
               ],

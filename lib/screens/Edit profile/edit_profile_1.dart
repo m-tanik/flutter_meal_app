@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'edit_profile_2.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({Key key}) : super(key: key);
@@ -46,7 +47,12 @@ class EditProfile extends StatelessWidget {
                     title: 'Name',
                     value: 'John William Watson',
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfileName(),
+                        ),
+                      );
                     },
                   ),
                   SizedBox(

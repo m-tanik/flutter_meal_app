@@ -54,7 +54,7 @@ class WelcomeMessage extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(
-                    height: 30.0,
+                    height: MediaQuery.of(context).size.height / 5,
                   ),
                   FillButton(
                     onPressed: () {
