@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import '../Default Carb Level/default_carb_level.dart';
+import '../Edit profile/edit_profile_1.dart';
 
 class SettingPageMain extends StatefulWidget {
   const SettingPageMain({Key key}) : super(key: key);
@@ -39,7 +40,14 @@ class _SettingPageMainState extends State<SettingPageMain> {
             SettingCards(
               cardTitle: 'Edit profile',
               iconValue: Icons.account_circle_outlined,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditProfile(),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: 15,
