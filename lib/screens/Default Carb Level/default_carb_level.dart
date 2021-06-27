@@ -89,7 +89,7 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
                     },
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 12,
                   ),
                   CarbLevelCard(
                     carbValue: carbList[2].carbAmount,
@@ -104,7 +104,7 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
                     },
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 12,
                   ),
                   CarbLevelCard(
                     carbValue: carbList[3].carbAmount,
@@ -119,7 +119,7 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
                     },
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 12,
                   ),
                 ],
               ),

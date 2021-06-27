@@ -3,6 +3,7 @@ import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import '../Default Carb Level/default_carb_level.dart';
 import '../Edit profile/edit_profile_1.dart';
 import '../change language/change_language.dart';
+import '../logout/logout_page.dart';
 
 class SettingPageMain extends StatefulWidget {
   const SettingPageMain({Key key}) : super(key: key);
@@ -79,7 +80,14 @@ class _SettingPageMainState extends State<SettingPageMain> {
             SettingCards(
               cardTitle: 'Log out',
               iconValue: Icons.logout,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LogoutPage(),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: 15,
