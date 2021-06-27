@@ -44,7 +44,7 @@ class _EditProfileNameState extends State<EditProfileName> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 6,
+                height: MediaQuery.of(context).size.height / 20,
               ),
               Container(
                 child: Column(
