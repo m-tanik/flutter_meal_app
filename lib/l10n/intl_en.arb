@@ -1,0 +1,7 @@
+{
+  "helloWorld": "Hello there!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "btn_proceed": "Proceed"
+}
