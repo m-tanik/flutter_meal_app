@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import '../Default Carb Level/default_carb_level.dart';
 import '../Edit profile/edit_profile_1.dart';
+import '../change language/change_language.dart';
 
 class SettingPageMain extends StatefulWidget {
   const SettingPageMain({Key key}) : super(key: key);
@@ -55,7 +56,14 @@ class _SettingPageMainState extends State<SettingPageMain> {
             SettingCards(
               cardTitle: 'Change language',
               iconValue: Icons.chat_bubble,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeLanguage(),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: 15,
