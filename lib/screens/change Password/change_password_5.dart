@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import '../setting/setting_page_main.dart';
+import '../pages/pages.dart';
 
 class ChangePassword5 extends StatelessWidget {
   const ChangePassword5({Key key}) : super(key: key);
@@ -49,7 +50,7 @@ class ChangePassword5 extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingPageMain(),
+                  builder: (context) => Pages(),
                 ),
               );
             },
