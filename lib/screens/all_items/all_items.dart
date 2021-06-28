@@ -80,204 +80,145 @@ class _AllItemsState extends State<AllItems> {
       //   backgroundColor: darkBG,
       //   title:
       // ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            //this is the top calender container
-            Container(
-              child: GestureDetector(
-                onTap: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.arrow_back_ios),
-                      color: primaryColor,
-                    ),
-                    SizedBox(
-                      width: 35,
-                    ),
-                    Icon(
-                      Icons.calendar_today_outlined,
-                      color: primaryColor,
-                    ),
-                    SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      '12 Aug, 2020',
-                      style: heading6Style,
-                    ),
-                    SizedBox(
-                      width: 35,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.arrow_forward_ios),
-                      color: primaryColor,
-                    ),
-                  ],
-                ),
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10,
               ),
-            ),
-
-            SizedBox(
-              height: 20,
-            ),
-
-            // this container contains top Row below the app bar
-            Container(
-              child: Card(
-                color: darkBG,
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+              //this is the top calender container
+              Container(
+                child: GestureDetector(
+                  onTap: () {},
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      TopIconButton(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SelectCategory(),
-                              ),
-                            );
-                          },
-                          color: gray700,
-                          icon: Icons.list_alt_rounded),
-                      TopIconButton(
-                        onTap: () {
-                          setState(() {
-                            isEnable = !isEnable;
-                            itemCounter = 0;
-                            userPicked = false;
-                            // isPaused = !isPaused;
-                          });
-                        },
-                        color: isEnable
-                            ? Colors.yellow[200].withOpacity(0.6)
-                            : gray800,
-                        icon: Icons.pause,
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.arrow_back_ios),
+                        color: primaryColor,
                       ),
-                      Container(
-                        child: Center(
-                          child: Text(
-                            '$itemCounter / 3',
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
+                      SizedBox(
+                        width: 35,
                       ),
-                      TopIconButton(
-                        onTap: isEnable
-                            ? () {}
-                            : () {
-                                Navigator.pop(context);
-                              },
-                        icon: Icons.check,
-                        color: itemCounter > 0 ? primaryColor : gray800,
+                      Icon(
+                        Icons.calendar_today_outlined,
+                        color: primaryColor,
+                      ),
+                      SizedBox(
+                        width: 3,
+                      ),
+                      Text(
+                        '12 Aug, 2020',
+                        style: heading6Style,
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.arrow_forward_ios),
+                        color: primaryColor,
                       ),
                     ],
                   ),
                 ),
-              ), //top icon card
-            ),
-            SizedBox(
-              height: 20,
-            ),
+              ),
 
-            //this container shows the category text only
-            Container(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'All',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              SizedBox(
+                height: 20,
+              ),
+
+              // this container contains top Row below the app bar
+              Container(
+                child: Card(
+                  color: darkBG,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TopIconButton(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SelectCategory(),
+                                ),
+                              );
+                            },
+                            color: gray700,
+                            icon: Icons.list_alt_rounded),
+                        TopIconButton(
+                          onTap: () {
+                            setState(() {
+                              isEnable = !isEnable;
+                              itemCounter = 0;
+                              userPicked = false;
+                              // isPaused = !isPaused;
+                            });
+                          },
+                          color: isEnable
+                              ? Colors.yellow[200].withOpacity(0.6)
+                              : gray800,
+                          icon: Icons.pause,
+                        ),
+                        Container(
+                          child: Center(
+                            child: Text(
+                              '$itemCounter / 3',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                        ),
+                        TopIconButton(
+                          onTap: isEnable
+                              ? () {}
+                              : () {
+                                  Navigator.pop(context);
+                                },
+                          icon: Icons.check,
+                          color: itemCounter > 0 ? primaryColor : gray800,
+                        ),
+                      ],
+                    ),
+                  ),
+                ), //top icon card
+              ),
+              SizedBox(
+                height: 20,
+              ),
+
+              //this container shows the category text only
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'All',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
+              SizedBox(
+                height: 15,
+              ),
 
-            //this is the listview of all cards
-            Expanded(
-              child: ListView.builder(
-                  itemCount: foodItems.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      child: isEnable
-                          ? Container(
-                              child: FoodItemCard(
-                                itemName: foodItems[index].itemName,
-                                imageUrl: foodItems[index].imgUrl,
-                                calAmount: foodItems[index].calNumber,
-                                carbAmount: foodItems[index].carbNumber,
-                                fatAmount: foodItems[index].fatNumber,
-                                proAmount: foodItems[index].proNumber,
-                                isEnable: isEnable,
-                                userPicked: foodItems[index].userPicked,
-                                pickedIcon: foodItems[index].pickedIcon,
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ItemFullPage(
-                                        imageUrl: foodItems[index].imgUrl,
-                                        itemName: foodItems[index].itemName,
-                                        calAmount: foodItems[index].calNumber,
-                                        fatAmount: foodItems[index].fatNumber,
-                                        carbAmount: foodItems[index].carbNumber,
-                                        proAmount: foodItems[index].proNumber,
-                                        itemInfo: foodItems[index].itemInfo,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            )
-                          : Slidable(
-                              actionPane: SlidableDrawerActionPane(),
-                              actionExtentRatio: 0.25,
-                              secondaryActions: [
-                                IconSlideAction(
-                                  caption: foodItems[index].userPicked
-                                      ? 'Undo'
-                                      : 'Select',
-                                  color: darkBG,
-                                  icon: Icons.check,
-                                  onTap: () {
-                                    setState(() {
-                                      foodItems[index].userPicked =
-                                          !foodItems[index].userPicked;
-                                      if (foodItems[index].userPicked ==
-                                              false &&
-                                          itemCounter > 0) {
-                                        itemCounter--;
-                                      } else if (foodItems[index].userPicked ==
-                                              false &&
-                                          itemCounter == 3) {
-                                        return;
-                                      } else if (foodItems[index].userPicked ==
-                                              true &&
-                                          itemCounter < 3) {
-                                        itemCounter++;
-                                      }
-                                    });
-                                  },
-                                )
-                              ],
-                              child: Container(
+              //this is the listview of all cards
+              Expanded(
+                child: ListView.builder(
+                    itemCount: foodItems.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: isEnable
+                            ? Container(
                                 child: FoodItemCard(
                                   itemName: foodItems[index].itemName,
                                   imageUrl: foodItems[index].imgUrl,
@@ -306,13 +247,80 @@ class _AllItemsState extends State<AllItems> {
                                     );
                                   },
                                 ),
+                              )
+                            : Slidable(
+                                actionPane: SlidableDrawerActionPane(),
+                                actionExtentRatio: 0.25,
+                                secondaryActions: [
+                                  IconSlideAction(
+                                    caption: foodItems[index].userPicked
+                                        ? 'Undo'
+                                        : 'Select',
+                                    color: darkBG,
+                                    icon: Icons.check,
+                                    onTap: () {
+                                      setState(() {
+                                        foodItems[index].userPicked =
+                                            !foodItems[index].userPicked;
+                                        if (foodItems[index].userPicked ==
+                                                false &&
+                                            itemCounter > 0) {
+                                          itemCounter--;
+                                        } else if (foodItems[index]
+                                                    .userPicked ==
+                                                false &&
+                                            itemCounter == 3) {
+                                          return;
+                                        } else if (foodItems[index]
+                                                    .userPicked ==
+                                                true &&
+                                            itemCounter < 3) {
+                                          itemCounter++;
+                                        }
+                                      });
+                                    },
+                                  )
+                                ],
+                                child: Container(
+                                  child: FoodItemCard(
+                                    itemName: foodItems[index].itemName,
+                                    imageUrl: foodItems[index].imgUrl,
+                                    calAmount: foodItems[index].calNumber,
+                                    carbAmount: foodItems[index].carbNumber,
+                                    fatAmount: foodItems[index].fatNumber,
+                                    proAmount: foodItems[index].proNumber,
+                                    isEnable: isEnable,
+                                    userPicked: foodItems[index].userPicked,
+                                    pickedIcon: foodItems[index].pickedIcon,
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ItemFullPage(
+                                            imageUrl: foodItems[index].imgUrl,
+                                            itemName: foodItems[index].itemName,
+                                            calAmount:
+                                                foodItems[index].calNumber,
+                                            fatAmount:
+                                                foodItems[index].fatNumber,
+                                            carbAmount:
+                                                foodItems[index].carbNumber,
+                                            proAmount:
+                                                foodItems[index].proNumber,
+                                            itemInfo: foodItems[index].itemInfo,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
                               ),
-                            ),
-                      // ),
-                    );
-                  }),
-            ),
-          ],
+                        // ),
+                      );
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
     );

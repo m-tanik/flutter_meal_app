@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
+import 'change_password_2.dart';
 
-class EditProfileName extends StatefulWidget {
-  const EditProfileName({Key key}) : super(key: key);
+class ChangePassword extends StatefulWidget {
+  const ChangePassword({Key key}) : super(key: key);
 
   @override
-  _EditProfileNameState createState() => _EditProfileNameState();
+  _ChangePasswordState createState() => _ChangePasswordState();
 }
 
-class _EditProfileNameState extends State<EditProfileName> {
+class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +38,8 @@ class _EditProfileNameState extends State<EditProfileName> {
                       height: 20,
                     ),
                     Text(
-                      'Name',
-                      style: heading3Style,
+                      'Change password',
+                      style: heading4Style,
                     ),
                   ],
                 ),
@@ -49,38 +50,57 @@ class _EditProfileNameState extends State<EditProfileName> {
               Container(
                 child: Column(
                   children: [
-                    EditNameCard(
-                      title: 'FIRST NAME',
-                      icon: Icons.face_unlock_sharp,
-                      hintText: 'Your first name',
+                    ChangePasswordCard(
+                      title: 'CURRENT PASSWORD',
+                      hintText: '********',
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    EditNameCard(
-                      title: 'MIDDLE NAME',
+                    ChangePasswordCard(
+                      title: 'NEW PASSWORD',
                       icon: Icons.face_unlock_sharp,
-                      hintText: 'Your middle name',
+                      hintText: '********',
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    EditNameCard(
-                      title: 'LAST NAME',
+                    ChangePasswordCard(
+                      title: 'CONFIRM NEW PASSWORD',
                       icon: Icons.arrow_back,
-                      hintText: 'Your last name',
+                      hintText: '********',
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 4,
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Text(
+                            'FORGOT PASSWORD?',
+                            style: TextStyle(fontSize: 12, color: primaryColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 6,
                     ),
                   ],
                 ),
               ),
               FillButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChangePassword2(),
+                    ),
+                  );
                 },
-                text: 'Confirm',
+                text: 'Update Password',
               ),
             ],
           ),
@@ -90,12 +110,12 @@ class _EditProfileNameState extends State<EditProfileName> {
   }
 }
 
-class EditNameCard extends StatelessWidget {
+class ChangePasswordCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final String hintText;
 
-  EditNameCard({this.title, this.icon, this.hintText});
+  ChangePasswordCard({this.title, this.icon, this.hintText});
 
   @override
   Widget build(BuildContext context) {

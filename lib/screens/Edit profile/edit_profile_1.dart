@@ -32,7 +32,7 @@ class EditProfile extends StatelessWidget {
                   ),
                   Text(
                     'Edit profile',
-                    style: heading4Style,
+                    style: heading3Style,
                   ),
                 ],
               ),

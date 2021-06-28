@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scale_kuwait_mobile_app/screens/change%20Password/change_password_1.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import '../Default Carb Level/default_carb_level.dart';
 import '../Edit profile/edit_profile_1.dart';
@@ -72,7 +73,14 @@ class _SettingPageMainState extends State<SettingPageMain> {
             SettingCards(
               cardTitle: 'Change Password',
               iconValue: Icons.vpn_key,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangePassword(),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: 15,

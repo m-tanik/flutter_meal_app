@@ -339,7 +339,9 @@ class _ItemFullPageState extends State<ItemFullPage> {
                   height: MediaQuery.of(context).size.height / 7,
                 ),
                 FillButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   text: 'Select',
                 )
               ],

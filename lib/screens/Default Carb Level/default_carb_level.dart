@@ -53,7 +53,7 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
                   ),
                   Text(
                     'Default carb level',
-                    style: heading4Style,
+                    style: heading3Style,
                   ),
                 ],
               ),
@@ -127,7 +127,9 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
             Container(
               child: FillButton(
                 text: 'Confirm',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
             ),
           ],

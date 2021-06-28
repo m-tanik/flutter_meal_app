@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
+import 'change_password_5.dart';
 
-class EditProfileName extends StatefulWidget {
-  const EditProfileName({Key key}) : super(key: key);
+class ChangePassword4 extends StatefulWidget {
+  const ChangePassword4({Key key}) : super(key: key);
 
   @override
-  _EditProfileNameState createState() => _EditProfileNameState();
+  _ChangePassword4State createState() => _ChangePassword4State();
 }
 
-class _EditProfileNameState extends State<EditProfileName> {
+class _ChangePassword4State extends State<ChangePassword4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,50 +38,50 @@ class _EditProfileNameState extends State<EditProfileName> {
                       height: 20,
                     ),
                     Text(
-                      'Name',
+                      'Reset password',
                       style: heading3Style,
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 20,
+                height: MediaQuery.of(context).size.height / 5,
               ),
               Container(
                 child: Column(
                   children: [
-                    EditNameCard(
-                      title: 'FIRST NAME',
+                    ChangePasswordCard(
+                      title: 'NEW PASSWORD',
                       icon: Icons.face_unlock_sharp,
-                      hintText: 'Your first name',
+                      hintText: '********',
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    EditNameCard(
-                      title: 'MIDDLE NAME',
-                      icon: Icons.face_unlock_sharp,
-                      hintText: 'Your middle name',
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    EditNameCard(
-                      title: 'LAST NAME',
+                    ChangePasswordCard(
+                      title: 'CONFIRM NEW PASSWORD',
                       icon: Icons.arrow_back,
-                      hintText: 'Your last name',
+                      hintText: '********',
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 4,
+                      height: 15,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 6,
                     ),
                   ],
                 ),
               ),
               FillButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChangePassword5(),
+                    ),
+                  );
                 },
-                text: 'Confirm',
+                text: 'Reset Password',
               ),
             ],
           ),
@@ -90,12 +91,12 @@ class _EditProfileNameState extends State<EditProfileName> {
   }
 }
 
-class EditNameCard extends StatelessWidget {
+class ChangePasswordCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final String hintText;
 
-  EditNameCard({this.title, this.icon, this.hintText});
+  ChangePasswordCard({this.title, this.icon, this.hintText});
 
   @override
   Widget build(BuildContext context) {

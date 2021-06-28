@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
+import 'change_password_3.dart';
 
-class EditProfileEmail extends StatefulWidget {
-  const EditProfileEmail({Key key}) : super(key: key);
+class ChangePassword2 extends StatelessWidget {
+  const ChangePassword2({Key key}) : super(key: key);
 
-  @override
-  _EditProfileEmailState createState() => _EditProfileEmailState();
-}
-
-class _EditProfileEmailState extends State<EditProfileEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +13,7 @@ class _EditProfileEmailState extends State<EditProfileEmail> {
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               child: Column(
@@ -34,35 +32,35 @@ class _EditProfileEmailState extends State<EditProfileEmail> {
                     height: 20,
                   ),
                   Text(
-                    'Email',
+                    'Change password',
                     style: heading3Style,
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 40,
-            ),
             Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'johnwilliam@gmail.com',
-                    style: heading5Style,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '(confirmed)',
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: primaryColor,
-                    ),
-                  )
-                ],
+              child: Text(
+                'To change your password a verification email has to be sent to johnwilliam@email.com',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: gray50,
+                ),
               ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            FillButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangePassword3(),
+                  ),
+                );
+              },
+              fillColor: gray700,
+              text: 'Send verification',
             ),
           ],
         ),

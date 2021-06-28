@@ -51,7 +51,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                   ),
                   Text(
                     'Change Language',
-                    style: heading4Style,
+                    style: heading3Style,
                   ),
                 ],
               ),
