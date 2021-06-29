@@ -3,16 +3,20 @@ import 'package:flutter/src/material/text_button.dart';
 
 //colors
 const primaryColor = Color(0xFF649230);
+const primarySoftColor = Color(0xFF354820);
 const secondaryColor = Color(0xFF8B8B8A);
 const successColor = Color(0xFF66C35E);
 const infoColor = Color(0xFF00AACF);
 const warningColor = Color(0xFFFED47E);
+const dangerColor = Color(0xFFFC4C3F);
 const darkBG = Color(0xFF161615);
 const lightBG = Color(0xFFFFFFFF);
 const Color gray50 = Color(0xFFE8E8E8);
+const Color gray500 = Color(0xFF737373);
 const Color gray800 = Color(0xFF2D2D2C);
 const Color gray700 = Color(0xFF454544);
 const Color gray200 = Color(0xFFB9B9B9);
+const Color gray300 = Color(0xFFA2A2A1);
 
 const String defaultFont = 'Nunito';
 
@@ -25,8 +29,6 @@ const TextStyle heading3Style = TextStyle(fontSize: 25, color: Colors.white);
 const TextStyle heading4Style = TextStyle(fontSize: 20, color: Colors.white);
 
 const TextStyle heading5Style = TextStyle(fontSize: 16, color: Colors.white);
-
-const TextStyle heading6Style = TextStyle(fontSize: 20, color: primaryColor);
 
 const TextStyle body1Style = TextStyle(fontSize: 13, color: Colors.white);
 

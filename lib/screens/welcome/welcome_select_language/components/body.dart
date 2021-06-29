@@ -3,16 +3,24 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
 import 'package:scale_kuwait_mobile_app/generated/l10n.dart';
+import 'package:scale_kuwait_mobile_app/screens/onboarding_slider/onboarding_slider_screen.dart';
 import 'package:scale_kuwait_mobile_app/screens/welcome/welcome_select_language/components/background.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final void Function(String) onLanguageChange;
 
   const Body({Key key, this.onLanguageChange}) : super(key: key);
 
   @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  Locale myLocale;
+  @override
   Widget build(BuildContext context) {
+    myLocale = Localizations.localeOf(context);
     Size size = MediaQuery.of(context).size;
     return Background(
       child: Stack(
@@ -67,9 +75,12 @@ class Body extends StatelessWidget {
                         children: [
                           FillButton(
                             onPressed: () {
-                              onLanguageChange('ar');
+                              widget.onLanguageChange('ar');
                             },
                             text: "عربي",
+                            borderColor: (myLocale.toString() == "ar")
+                                ? primaryColor
+                                : null,
                             fillColor: gray800,
                           ),
                           Padding(
@@ -77,14 +88,21 @@ class Body extends StatelessWidget {
                                   const EdgeInsets.fromLTRB(0, 16, 0, 45.5),
                               child: FillButton(
                                 onPressed: () {
-                                  onLanguageChange('en');
+                                  widget.onLanguageChange('en');
                                 },
                                 text: "English",
-                                borderColor: primaryColor,
+                                borderColor: (myLocale.toString() == "en")
+                                    ? primaryColor
+                                    : null,
                                 fillColor: gray800,
                               )),
                           FillButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return OnboardingSliderScreen();
+                              }));
+                            },
                             text: S.of(context).btn_proceed,
                             radius: 32,
                           ),

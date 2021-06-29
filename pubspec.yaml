@@ -33,7 +33,10 @@ dependencies:
   flutter_svg: ^0.21.0+1
   google_fonts: ^2.0.0
   shared_preferences: ^2.0.5
+  fluttertoast: ^8.0.7
   flutter_slidable:
+#  flutter_calendar_carousel:
+#    path: ./flutter_calendar_carousel-2.0.1-hijacking
 
 
 dev_dependencies:

@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
-import 'package:scale_kuwait_mobile_app/components/custom_text_field.dart';
-import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'package:scale_kuwait_mobile_app/screens/welcome_message/welcome_message_screen.dart';
 
 import 'background.dart';
 
@@ -36,7 +34,12 @@ class Body extends StatelessWidget {
                     size: 36,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return WelcomeMessage();
+                    }));
+                  },
                 ),
               )
             ],

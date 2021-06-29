@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
+import 'package:scale_kuwait_mobile_app/screens/all_items/all_items.dart';
 import 'package:scale_kuwait_mobile_app/screens/onboarding_slider/components/background.dart';
 import 'package:scale_kuwait_mobile_app/screens/onboarding_slider/components/data.dart';
+import 'package:scale_kuwait_mobile_app/screens/pages/pages.dart';
+import 'package:scale_kuwait_mobile_app/screens/signup/page1/signup_screen.dart';
+import 'package:scale_kuwait_mobile_app/screens/welcome_message/welcome_message_screen.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 
 class Body extends StatelessWidget {
@@ -27,7 +31,12 @@ class Body extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignupScreen()));
+                          },
                           child:
                               index != totalPages - 1 ? Text("Skip") : Text(""),
                           style: TextButton.styleFrom(
@@ -97,7 +106,12 @@ class Body extends StatelessWidget {
                     )
                   else
                     FillButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return SignupScreen();
+                        }));
+                      },
                       text: 'Get Started',
                       radius: 32,
                     )

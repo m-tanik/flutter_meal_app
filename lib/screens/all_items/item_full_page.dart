@@ -49,7 +49,7 @@ class _ItemFullPageState extends State<ItemFullPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     image: DecorationImage(
-                        image: NetworkImage('${widget.imageUrl}'),
+                        image: AssetImage('${widget.imageUrl}'),
                         fit: BoxFit.cover),
                   ),
                 ), //Photo Container

@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:scale_kuwait_mobile_app/screens/all_items/component/food_item_card.dart';
+import 'package:scale_kuwait_mobile_app/screens/calendar/calendar_gridView.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import 'item_model.dart';
 import 'item_full_page.dart';
@@ -15,16 +17,15 @@ class AllItems extends StatefulWidget {
 }
 
 class _AllItemsState extends State<AllItems> {
-  bool isEnable;
-  int itemCounter;
+  bool isPaused;
+  int itemCounter = 0;
   bool userPicked = false;
-  bool isPaused = false;
+  int userLimit = 2;
 
   List<ItemModel> foodItems = [
     ItemModel(
         itemName: 'Burger',
-        imgUrl:
-            'https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?cs=srgb&dl=pexels-valeria-boltneva-1639562.jpg&fm=jpg',
+        imgUrl: 'assets/images/burger.jpg',
         calNumber: 206,
         fatNumber: 10,
         carbNumber: 21,
@@ -36,8 +37,19 @@ class _AllItemsState extends State<AllItems> {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
     ItemModel(
         itemName: 'Pizza',
-        imgUrl:
-            'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/8/1/6/5/1805618-1-eng-GB/Dairy-group-grabs-a-pizza-the-action_wrbm_large.jpg',
+        imgUrl: 'assets/images/pizza.jpg',
+        calNumber: 286,
+        fatNumber: 17,
+        carbNumber: 28,
+        userPicked: false,
+        pickedIcon: Icons.check_circle,
+        proNumber: 13,
+        id: 2,
+        itemInfo:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
+    ItemModel(
+        itemName: 'Pizza',
+        imgUrl: 'assets/images/pizza.jpg',
         calNumber: 286,
         fatNumber: 17,
         carbNumber: 28,
@@ -49,7 +61,7 @@ class _AllItemsState extends State<AllItems> {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
     ItemModel(
         itemName: 'Sandwich',
-        imgUrl: 'https://image.freepik.com/free-photo/sandwich_1339-1108.jpg',
+        imgUrl: 'assets/images/sandwich.jpg',
         calNumber: 176,
         fatNumber: 8,
         carbNumber: 19,
@@ -64,10 +76,9 @@ class _AllItemsState extends State<AllItems> {
   @override
   void initState() {
     super.initState();
-    isEnable = false;
+    isPaused = false;
     itemCounter = 0;
     userPicked = false;
-    isPaused = false;
   }
 
   @override
@@ -91,40 +102,52 @@ class _AllItemsState extends State<AllItems> {
               ),
               //this is the top calender container
               Container(
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.arrow_back_ios),
-                        color: primaryColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.arrow_back_ios),
+                      color: primaryColor,
+                    ),
+                    SizedBox(
+                      width: 35,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return CalenderGridView();
+                        }));
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.calendar_today_outlined,
+                            color: primaryColor,
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            '12 Aug, 2020',
+                            style: Theme.of(context).textTheme.headline5.merge(
+                                TextStyle(
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.w700)),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 35,
-                      ),
-                      Icon(
-                        Icons.calendar_today_outlined,
-                        color: primaryColor,
-                      ),
-                      SizedBox(
-                        width: 3,
-                      ),
-                      Text(
-                        '12 Aug, 2020',
-                        style: heading6Style,
-                      ),
-                      SizedBox(
-                        width: 35,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.arrow_forward_ios),
-                        color: primaryColor,
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      width: 35,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.arrow_forward_ios),
+                      color: primaryColor,
+                    ),
+                  ],
                 ),
               ),
 
@@ -159,13 +182,17 @@ class _AllItemsState extends State<AllItems> {
                         TopIconButton(
                           onTap: () {
                             setState(() {
-                              isEnable = !isEnable;
+                              isPaused = !isPaused;
                               itemCounter = 0;
                               userPicked = false;
+                              foodItems
+                                  .map((e) => e.userPicked = false)
+                                  .toList();
+
                               // isPaused = !isPaused;
                             });
                           },
-                          color: isEnable
+                          color: isPaused
                               ? Colors.yellow[200].withOpacity(0.6)
                               : gray800,
                           icon: Icons.pause,
@@ -173,20 +200,22 @@ class _AllItemsState extends State<AllItems> {
                         Container(
                           child: Center(
                             child: Text(
-                              '$itemCounter / 3',
+                              '$itemCounter / 2',
                               style: TextStyle(fontSize: 15),
                             ),
                           ),
                         ),
-                        TopIconButton(
-                          onTap: isEnable
-                              ? () {}
-                              : () {
-                                  Navigator.pop(context);
-                                },
-                          icon: Icons.check,
-                          color: itemCounter > 0 ? primaryColor : gray800,
-                        ),
+                        !isPaused
+                            ? TopIconButton(
+                                onTap: isPaused ? () {} : () {},
+                                icon: Icons.check,
+                                color: itemCounter > 0 ? primaryColor : gray800,
+                              )
+                            : Container(
+                                child: SizedBox(
+                                  width: 60,
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -217,7 +246,9 @@ class _AllItemsState extends State<AllItems> {
                     itemCount: foodItems.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        child: isEnable
+                        child: isPaused ||
+                                itemCounter >= userLimit &&
+                                    !foodItems[index].userPicked
                             ? Container(
                                 child: FoodItemCard(
                                   itemName: foodItems[index].itemName,
@@ -226,7 +257,8 @@ class _AllItemsState extends State<AllItems> {
                                   carbAmount: foodItems[index].carbNumber,
                                   fatAmount: foodItems[index].fatNumber,
                                   proAmount: foodItems[index].proNumber,
-                                  isEnable: isEnable,
+                                  isPaused: isPaused,
+                                  isLimitCrossed: itemCounter >= userLimit,
                                   userPicked: foodItems[index].userPicked,
                                   pickedIcon: foodItems[index].pickedIcon,
                                   onTap: () {
@@ -269,12 +301,12 @@ class _AllItemsState extends State<AllItems> {
                                         } else if (foodItems[index]
                                                     .userPicked ==
                                                 false &&
-                                            itemCounter == 3) {
+                                            itemCounter == 2) {
                                           return;
                                         } else if (foodItems[index]
                                                     .userPicked ==
                                                 true &&
-                                            itemCounter < 3) {
+                                            itemCounter < 2) {
                                           itemCounter++;
                                         }
                                       });
@@ -289,7 +321,8 @@ class _AllItemsState extends State<AllItems> {
                                     carbAmount: foodItems[index].carbNumber,
                                     fatAmount: foodItems[index].fatNumber,
                                     proAmount: foodItems[index].proNumber,
-                                    isEnable: isEnable,
+                                    isPaused: isPaused,
+                                    isLimitCrossed: itemCounter >= userLimit,
                                     userPicked: foodItems[index].userPicked,
                                     pickedIcon: foodItems[index].pickedIcon,
                                     onTap: () {
@@ -350,216 +383,6 @@ class TopIconButton extends StatelessWidget {
         focusColor: primaryColor,
         onPressed: onTap,
       ),
-    );
-  }
-}
-
-// Card for every single food item
-class FoodItemCard extends StatelessWidget {
-  final String imageUrl;
-  final String itemName;
-  final int calAmount;
-  final int fatAmount;
-  final int carbAmount;
-  final int proAmount;
-  final Function onTap;
-  final bool isEnable;
-  final bool userPicked;
-  final IconData pickedIcon;
-
-  FoodItemCard({
-    this.imageUrl,
-    this.itemName,
-    this.calAmount,
-    this.carbAmount,
-    this.fatAmount,
-    this.proAmount,
-    this.onTap,
-    this.isEnable,
-    this.userPicked,
-    this.pickedIcon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: userPicked && !isEnable
-              ? primaryColor
-              : Colors.transparent.withOpacity(0),
-          width: 1,
-        ),
-      ),
-      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-      // child: BackdropFilter(
-      //   filter: (ImageFilter.blur(
-      //       sigmaX: isEnable ? 4 : 0,
-      //       sigmaY: isEnable ? 4 : 0,
-      //       tileMode: TileMode.repeated)),
-      child: Card(
-        color: isEnable ? gray700.withOpacity(0.1) : gray700,
-        elevation: isEnable ? 5 : 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 1, top: 8, right: 8, bottom: 8),
-          child: ListTile(
-            enabled: !isEnable,
-            onTap: onTap,
-            // leading: CircleAvatar(
-            //   backgroundImage: NetworkImage('$imageUrl'),
-            //   radius: 30,
-            // ),
-            leading: Container(
-              width: MediaQuery.of(context).size.width / 4,
-              height: MediaQuery.of(context).size.width / 4.5,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage('$imageUrl'),
-                ),
-              ),
-            ),
-            title: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    // width: 50,
-                    child: Text(
-                      '$itemName',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: isEnable ? gray200.withOpacity(0.2) : gray50),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Icon(
-                  pickedIcon,
-                  size: 18,
-                  color: userPicked && !isEnable
-                      ? primaryColor
-                      : Colors.transparent.withOpacity(0),
-                )
-              ],
-            ),
-            subtitle: Column(
-              children: [
-                SizedBox(
-                  height: 12,
-                ),
-                Divider(
-                  height: 2,
-                  color: gray200,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Cal',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: isEnable
-                                  ? gray200.withOpacity(0.2)
-                                  : Colors.yellow),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          '$calAmount',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color:
-                                  isEnable ? gray200.withOpacity(0.2) : gray50),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Fat',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: isEnable
-                                  ? gray200.withOpacity(0.2)
-                                  : Colors.yellow),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          '$fatAmount',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color:
-                                  isEnable ? gray200.withOpacity(0.2) : gray50),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Carb',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: isEnable
-                                  ? gray200.withOpacity(0.2)
-                                  : Colors.yellow),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          '$carbAmount',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color:
-                                  isEnable ? gray200.withOpacity(0.2) : gray50),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Pro',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: isEnable
-                                  ? gray200.withOpacity(0.2)
-                                  : Colors.yellow),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          '$proAmount',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color:
-                                  isEnable ? gray200.withOpacity(0.2) : gray50),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      // ),
     );
   }
 }

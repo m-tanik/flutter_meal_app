@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
 import 'package:scale_kuwait_mobile_app/components/curve_clipper.dart';
 import 'package:scale_kuwait_mobile_app/components/custom_text_field.dart';
+import 'package:scale_kuwait_mobile_app/screens/signup/page1/signup_screen.dart';
+import 'package:scale_kuwait_mobile_app/screens/welcome_message/welcome_message_screen.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 
 import 'background.dart';
@@ -114,7 +117,12 @@ class Body extends StatelessWidget {
                       ),
                     ),
                     FillButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return WelcomeMessage();
+                        }));
+                      },
                       text: "Login",
                       radius: 32,
                     ),
@@ -135,6 +143,13 @@ class Body extends StatelessWidget {
                                   .textTheme
                                   .bodyText1
                                   .merge(TextStyle(color: primaryColor)),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return SignupScreen();
+                                  }));
+                                },
                             )
                           ],
                         ),

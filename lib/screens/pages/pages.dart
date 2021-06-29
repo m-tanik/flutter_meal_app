@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:scale_kuwait_mobile_app/screens/profile/profile_screen.dart';
 import '../choose_package/choose_package_main_screen.dart';
 import '../all_items/all_items.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
@@ -48,7 +49,7 @@ class _PagesState extends State<Pages> {
         children: [
           AllItems(),
           ChoosePackage(),
-          ProfilePage(),
+          ProfileScreen(),
           SettingPageMain(),
         ],
         controller: pageController,
