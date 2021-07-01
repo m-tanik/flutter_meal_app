@@ -12,6 +12,7 @@ class _SelectCategoryState extends State<SelectCategory> {
   bool breakFast = false;
   bool lunch = false;
   bool snacks = false;
+  String selectedCategory = 'All';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +54,9 @@ class _SelectCategoryState extends State<SelectCategory> {
                             lunch = true;
                             breakFast = true;
                             snacks = true;
+                            selectedCategory = 'All';
                           });
-                          Navigator.pop(context);
+                          Navigator.pop(context, selectedCategory);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -87,8 +89,9 @@ class _SelectCategoryState extends State<SelectCategory> {
                             lunch = false;
                             breakFast = true;
                             snacks = false;
+                            selectedCategory = 'Breakfast';
                           });
-                          Navigator.pop(context);
+                          Navigator.pop(context, selectedCategory);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -121,8 +124,9 @@ class _SelectCategoryState extends State<SelectCategory> {
                             lunch = true;
                             breakFast = false;
                             snacks = false;
+                            selectedCategory = 'Lunch';
                           });
-                          Navigator.pop(context);
+                          Navigator.pop(context, selectedCategory);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -155,8 +159,9 @@ class _SelectCategoryState extends State<SelectCategory> {
                             lunch = false;
                             breakFast = false;
                             snacks = true;
+                            selectedCategory = 'Snacks';
                           });
-                          Navigator.pop(context);
+                          Navigator.pop(context, selectedCategory);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,

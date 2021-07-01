@@ -22,7 +22,25 @@ class _AllItemsState extends State<AllItems> {
   bool userPicked = false;
   int userLimit = 2;
 
-  List<ItemModel> foodItems = [
+  var listname = 'allItems';
+
+  List<ItemModel> snacks = [
+    ItemModel(
+        itemName: 'Burger',
+        imgUrl: 'assets/images/burger.jpg',
+        calNumber: 206,
+        fatNumber: 10,
+        carbNumber: 21,
+        proNumber: 8,
+        userPicked: false,
+        pickedIcon: Icons.check_circle,
+        id: 1,
+        itemInfo:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
+  ];
+
+  List<ItemModel> showList = [];
+  List<ItemModel> allItems = [
     ItemModel(
         itemName: 'Burger',
         imgUrl: 'assets/images/burger.jpg',
@@ -79,6 +97,7 @@ class _AllItemsState extends State<AllItems> {
     isPaused = false;
     itemCounter = 0;
     userPicked = false;
+    showList = allItems;
   }
 
   @override
@@ -169,13 +188,22 @@ class _AllItemsState extends State<AllItems> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TopIconButton(
-                            onTap: () {
-                              Navigator.push(
+                            onTap: () async {
+                              String selectedCategory = await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SelectCategory(),
                                 ),
                               );
+                              print(selectedCategory);
+                              setState(() {
+                                if (selectedCategory == 'All') {
+                                  showList = allItems;
+                                } else if (selectedCategory == 'Snacks') {
+                                  showList = snacks;
+                                  print(showList);
+                                }
+                              });
                             },
                             color: gray700,
                             icon: Icons.list_alt_rounded),
@@ -185,7 +213,7 @@ class _AllItemsState extends State<AllItems> {
                               isPaused = !isPaused;
                               itemCounter = 0;
                               userPicked = false;
-                              foodItems
+                              showList
                                   .map((e) => e.userPicked = false)
                                   .toList();
 
@@ -243,37 +271,37 @@ class _AllItemsState extends State<AllItems> {
               //this is the listview of all cards
               Expanded(
                 child: ListView.builder(
-                    itemCount: foodItems.length,
+                    itemCount: showList.length,
                     itemBuilder: (context, index) {
                       return Container(
                         child: isPaused ||
                                 itemCounter >= userLimit &&
-                                    !foodItems[index].userPicked
+                                    !allItems[index].userPicked
                             ? Container(
                                 child: FoodItemCard(
-                                  itemName: foodItems[index].itemName,
-                                  imageUrl: foodItems[index].imgUrl,
-                                  calAmount: foodItems[index].calNumber,
-                                  carbAmount: foodItems[index].carbNumber,
-                                  fatAmount: foodItems[index].fatNumber,
-                                  proAmount: foodItems[index].proNumber,
+                                  itemName: showList[index].itemName,
+                                  imageUrl: showList[index].imgUrl,
+                                  calAmount: showList[index].calNumber,
+                                  carbAmount: showList[index].carbNumber,
+                                  fatAmount: showList[index].fatNumber,
+                                  proAmount: showList[index].proNumber,
                                   isPaused: isPaused,
                                   isLimitCrossed: itemCounter >= userLimit,
-                                  userPicked: foodItems[index].userPicked,
-                                  pickedIcon: foodItems[index].pickedIcon,
+                                  userPicked: showList[index].userPicked,
+                                  pickedIcon: showList[index].pickedIcon,
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => ItemFullPage(
-                                          imageUrl: foodItems[index].imgUrl,
-                                          itemName: foodItems[index].itemName,
-                                          calAmount: foodItems[index].calNumber,
-                                          fatAmount: foodItems[index].fatNumber,
+                                          imageUrl: showList[index].imgUrl,
+                                          itemName: showList[index].itemName,
+                                          calAmount: showList[index].calNumber,
+                                          fatAmount: showList[index].fatNumber,
                                           carbAmount:
-                                              foodItems[index].carbNumber,
-                                          proAmount: foodItems[index].proNumber,
-                                          itemInfo: foodItems[index].itemInfo,
+                                              showList[index].carbNumber,
+                                          proAmount: showList[index].proNumber,
+                                          itemInfo: showList[index].itemInfo,
                                         ),
                                       ),
                                     );
@@ -285,26 +313,24 @@ class _AllItemsState extends State<AllItems> {
                                 actionExtentRatio: 0.25,
                                 secondaryActions: [
                                   IconSlideAction(
-                                    caption: foodItems[index].userPicked
+                                    caption: showList[index].userPicked
                                         ? 'Undo'
                                         : 'Select',
                                     color: darkBG,
                                     icon: Icons.check,
                                     onTap: () {
                                       setState(() {
-                                        foodItems[index].userPicked =
-                                            !foodItems[index].userPicked;
-                                        if (foodItems[index].userPicked ==
+                                        showList[index].userPicked =
+                                            !showList[index].userPicked;
+                                        if (showList[index].userPicked ==
                                                 false &&
                                             itemCounter > 0) {
                                           itemCounter--;
-                                        } else if (foodItems[index]
-                                                    .userPicked ==
+                                        } else if (showList[index].userPicked ==
                                                 false &&
                                             itemCounter == 2) {
                                           return;
-                                        } else if (foodItems[index]
-                                                    .userPicked ==
+                                        } else if (showList[index].userPicked ==
                                                 true &&
                                             itemCounter < 2) {
                                           itemCounter++;
@@ -315,32 +341,32 @@ class _AllItemsState extends State<AllItems> {
                                 ],
                                 child: Container(
                                   child: FoodItemCard(
-                                    itemName: foodItems[index].itemName,
-                                    imageUrl: foodItems[index].imgUrl,
-                                    calAmount: foodItems[index].calNumber,
-                                    carbAmount: foodItems[index].carbNumber,
-                                    fatAmount: foodItems[index].fatNumber,
-                                    proAmount: foodItems[index].proNumber,
+                                    itemName: showList[index].itemName,
+                                    imageUrl: showList[index].imgUrl,
+                                    calAmount: showList[index].calNumber,
+                                    carbAmount: showList[index].carbNumber,
+                                    fatAmount: showList[index].fatNumber,
+                                    proAmount: showList[index].proNumber,
                                     isPaused: isPaused,
                                     isLimitCrossed: itemCounter >= userLimit,
-                                    userPicked: foodItems[index].userPicked,
-                                    pickedIcon: foodItems[index].pickedIcon,
+                                    userPicked: showList[index].userPicked,
+                                    pickedIcon: showList[index].pickedIcon,
                                     onTap: () {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => ItemFullPage(
-                                            imageUrl: foodItems[index].imgUrl,
-                                            itemName: foodItems[index].itemName,
+                                            imageUrl: showList[index].imgUrl,
+                                            itemName: showList[index].itemName,
                                             calAmount:
-                                                foodItems[index].calNumber,
+                                                showList[index].calNumber,
                                             fatAmount:
-                                                foodItems[index].fatNumber,
+                                                showList[index].fatNumber,
                                             carbAmount:
-                                                foodItems[index].carbNumber,
+                                                showList[index].carbNumber,
                                             proAmount:
-                                                foodItems[index].proNumber,
-                                            itemInfo: foodItems[index].itemInfo,
+                                                showList[index].proNumber,
+                                            itemInfo: showList[index].itemInfo,
                                           ),
                                         ),
                                       );
