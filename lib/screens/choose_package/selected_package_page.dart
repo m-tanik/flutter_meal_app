@@ -1,9 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import 'package:scale_kuwait_mobile_app/screens/checkout/checkout_page.dart';
+import 'package:scale_kuwait_mobile_app/screens/background_svg.dart';
+import 'selected_package_model.dart';
 
-class LifeStyle extends StatelessWidget {
-  const LifeStyle({Key key}) : super(key: key);
+class SelectedPackage extends StatelessWidget {
+  final String packageName;
+  final String proAmount;
+  final IconData packageIcon;
+
+  SelectedPackage({
+    this.packageName,
+    this.proAmount,
+    this.packageIcon,
+  });
+
+  List<SelectedPackageModel> packageCards = [
+    SelectedPackageModel(
+      mealNumber: 2,
+      snackNumber: 2,
+      daysOnLeftCard: 12,
+      daysOnRightCard: 24,
+      offPercentage: 10,
+      kdLeft: 75,
+      kdRight: 75,
+    ),
+    SelectedPackageModel(
+      mealNumber: 3,
+      snackNumber: 2,
+      daysOnLeftCard: 12,
+      daysOnRightCard: 24,
+      offPercentage: 10,
+      kdLeft: 85,
+      kdRight: 165,
+    ),
+    SelectedPackageModel(
+      mealNumber: 4,
+      snackNumber: 2,
+      daysOnLeftCard: 12,
+      daysOnRightCard: 24,
+      offPercentage: 10,
+      kdLeft: 100,
+      kdRight: 205,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -13,23 +53,23 @@ class LifeStyle extends StatelessWidget {
         elevation: 0,
         backgroundColor: darkBG,
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: SingleChildScrollView(
+      body: Background(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Icon(
-                    Icons.lunch_dining,
+                    packageIcon,
                     color: primaryColor,
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
-                    'LifeStyle ',
+                    packageName,
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -39,7 +79,7 @@ class LifeStyle extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    '100g Protein',
+                    '${proAmount}g Protein',
                     style: TextStyle(
                       fontSize: 18,
                     ),
@@ -51,84 +91,43 @@ class LifeStyle extends StatelessWidget {
               ),
               Container(
                 child: Text(
-                  'With Lifestyle meal plan you will get 100g of Protein for each meal and your choice of carbohydrates portions. Lose weight, eat healthy, and live longer.',
+                  'With ${packageName} meal plan you will get ${proAmount}g of Protein for each meal and your choice of carbohydrates portions. Lose weight, eat healthy, and live longer.',
                   style: TextStyle(fontSize: 15.0, color: gray200),
                 ),
               ),
               SizedBox(
                 height: 15,
               ),
-              LifeStyleCard(
-                mealNumber: 2,
-                snackNumber: 2,
-                daysLeft: 12,
-                kdLeft: 75,
-                kdRight: 75,
-                daysRight: 24,
-                offPercentage: 10,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CheckoutPage(
-                        mealNumber: 2,
-                        snackNumber: 2,
-                        days: 12,
-                        totalKD: 75,
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              LifeStyleCard(
-                mealNumber: 3,
-                snackNumber: 2,
-                daysLeft: 12,
-                kdLeft: 85,
-                kdRight: 165,
-                daysRight: 24,
-                offPercentage: 10,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CheckoutPage(
-                        mealNumber: 3,
-                        snackNumber: 2,
-                        days: 12,
-                        totalKD: 165,
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              LifeStyleCard(
-                mealNumber: 4,
-                snackNumber: 2,
-                daysLeft: 12,
-                kdLeft: 100,
-                kdRight: 205,
-                daysRight: 24,
-                offPercentage: 10,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CheckoutPage(
-                        mealNumber: 4,
-                        snackNumber: 2,
-                        days: 12,
-                        totalKD: 205,
-                      ),
-                    ),
-                  );
-                },
+              Expanded(
+                child: ListView.builder(
+                  itemCount: packageCards.length,
+                  itemBuilder: (context, index) {
+                    return LifeStyleCard(
+                      mealNumber: packageCards[index].mealNumber,
+                      snackNumber: packageCards[index].snackNumber,
+                      daysLeft: packageCards[index].daysOnLeftCard,
+                      kdLeft: packageCards[index].kdLeft,
+                      kdRight: packageCards[index].kdRight,
+                      daysRight: packageCards[index].daysOnRightCard,
+                      offPercentage: packageCards[index].offPercentage,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CheckoutPage(
+                              mealNumber: packageCards[index].mealNumber,
+                              snackNumber: packageCards[index].snackNumber,
+                              days: packageCards[index].daysOnLeftCard,
+                              totalKD: packageCards[index].kdRight,
+                              packageName: packageName,
+                              proNumber: proAmount,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'package:scale_kuwait_mobile_app/components/custom_text_field.dart';
 
 class EditProfileName extends StatefulWidget {
   const EditProfileName({Key key}) : super(key: key);
@@ -51,7 +52,7 @@ class _EditProfileNameState extends State<EditProfileName> {
                   children: [
                     EditNameCard(
                       title: 'FIRST NAME',
-                      icon: Icons.face_unlock_sharp,
+                      icon: Icons.account_circle_outlined,
                       hintText: 'Your first name',
                     ),
                     SizedBox(
@@ -59,7 +60,7 @@ class _EditProfileNameState extends State<EditProfileName> {
                     ),
                     EditNameCard(
                       title: 'MIDDLE NAME',
-                      icon: Icons.face_unlock_sharp,
+                      icon: Icons.account_circle_outlined,
                       hintText: 'Your middle name',
                     ),
                     SizedBox(
@@ -67,7 +68,7 @@ class _EditProfileNameState extends State<EditProfileName> {
                     ),
                     EditNameCard(
                       title: 'LAST NAME',
-                      icon: Icons.arrow_back,
+                      icon: Icons.account_circle_outlined,
                       hintText: 'Your last name',
                     ),
                     SizedBox(
@@ -107,28 +108,18 @@ class EditNameCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 40),
             child: Text(
               '$title',
-              style: TextStyle(color: primaryColor, fontSize: 12),
+              style: TextStyle(color: primaryColor, fontSize: 13),
             ),
           ),
           SizedBox(
             height: 5,
           ),
-          TextField(
-            style: TextStyle(color: primaryColor),
-            textAlign: TextAlign.center,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-                hintText: '$hintText',
-                hintStyle: TextStyle(
-                  color: gray700,
-                ),
-                focusColor: gray700,
-                filled: true,
-                fillColor: gray800),
+          CustomTextField(
+            icon: Icon(
+              icon,
+              color: gray50,
+            ),
+            hintText: '$hintText',
           ),
         ],
       ),

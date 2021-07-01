@@ -7,14 +7,16 @@ class CustomTextField extends StatelessWidget {
   final Color textColor;
   final Color fillColor;
   final Icon icon;
+  final String hintText;
 
-  const CustomTextField(
-      {Key key,
-      this.radius = 28,
-      this.textColor = gray50,
-      this.fillColor = gray800,
-      this.icon = const Icon(Icons.view_headline, color: gray50)})
-      : super(key: key);
+  const CustomTextField({
+    Key key,
+    this.radius = 28,
+    this.textColor = gray50,
+    this.fillColor = gray800,
+    this.icon = const Icon(Icons.view_headline, color: gray50),
+    this.hintText,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -25,6 +27,8 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           filled: true,
+          hintText: '$hintText',
+          hintStyle: TextStyle(color: gray500),
           fillColor: fillColor,
           prefixIcon: icon),
     );

@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import 'package:scale_kuwait_mobile_app/screens/billing_details/billing_details_2.dart';
+import 'package:scale_kuwait_mobile_app/screens/background_svg.dart';
+import 'package:scale_kuwait_mobile_app/components/custom_text_field.dart';
 
 class BillingDetails extends StatefulWidget {
-  const BillingDetails({Key key}) : super(key: key);
+  final String packageName;
+  final String proAmount;
+  final int mealNumber;
+  final int snackNumber;
+  final int daysLeft;
 
+  BillingDetails({
+    this.packageName,
+    this.proAmount,
+    this.mealNumber,
+    this.snackNumber,
+    this.daysLeft,
+  });
   @override
   _BillingDetailsState createState() => _BillingDetailsState();
 }
@@ -18,115 +31,130 @@ class _BillingDetailsState extends State<BillingDetails> {
         elevation: 0,
         backgroundColor: darkBG,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-        child: Container(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Billing Details',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+      body: Background(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Billing Details',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            '1',
-                            style: TextStyle(
-                                color: primaryColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            '2',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ],
+                        Row(
+                          children: [
+                            Text(
+                              '1',
+                              style: TextStyle(
+                                  color: primaryColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              '2',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                BillingTextField(
-                  title: 'AREA',
-                  hintText: 'Your Area',
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                BillingTextField(
-                  title: 'HOUSE',
-                  hintText: 'House No.',
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                BillingTextField(
-                  title: 'BLOCK',
-                  hintText: 'Your Block No.',
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                BillingTextField(
-                  title: 'STREET',
-                  hintText: 'Your Street Name',
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                BillingTextField(
-                  title: 'FLOOR',
-                  hintText: 'Floor No.',
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                BillingTextField(
-                  title: 'PHONE NUMBER',
-                  hintText: 'Your Phone Number',
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                BillingTextField(
-                  title: 'OTHER DIRECTIONS',
-                  hintText: 'Other details information',
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BillingDetails2(),
-                      ),
-                    );
-                  },
-                  child: Icon(
-                    Icons.arrow_forward,
-                    size: 50.0,
-                    color: gray50,
+                  BillingTextField(
+                    title: 'AREA',
+                    hintText: 'Your Area',
+                    icon: Icons.location_on,
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
+                  SizedBox(
+                    height: 10,
+                  ),
+                  BillingTextField(
+                    title: 'HOUSE',
+                    hintText: 'House No.',
+                    icon: Icons.house,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  BillingTextField(
+                    title: 'BLOCK',
+                    hintText: 'Your Block No.',
+                    icon: Icons.home_work_rounded,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  BillingTextField(
+                    title: 'STREET',
+                    hintText: 'Your Street Name',
+                    icon: Icons.add_road,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  BillingTextField(
+                    title: 'FLOOR',
+                    hintText: 'Floor No.',
+                    icon: Icons.line_weight_rounded,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  BillingTextField(
+                    title: 'PHONE NUMBER',
+                    hintText: 'Your Phone Number',
+                    icon: Icons.phone,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  BillingTextField(
+                    title: 'OTHER DIRECTIONS',
+                    hintText: 'Other details information',
+                    icon: Icons.directions,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BillingDetails2(
+                            packageName: widget.packageName,
+                            proAmount: widget.proAmount,
+                            mealNumber: widget.mealNumber,
+                            snackNumber: widget.snackNumber,
+                            daysLeft: widget.daysLeft,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.arrow_forward,
+                      size: 50.0,
+                      color: gray50,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -158,19 +186,12 @@ class BillingTextField extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          TextField(
-            style: TextStyle(color: primaryColor),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-                hintText: '$hintText',
-                hintStyle: TextStyle(color: gray200),
-                focusColor: gray700,
-                filled: true,
-                fillColor: gray800),
+          CustomTextField(
+            icon: Icon(
+              icon,
+              color: gray50,
+            ),
+            hintText: '$hintText',
           ),
         ],
       ),
