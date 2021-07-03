@@ -48,12 +48,12 @@ class FoodItemCard2 extends StatelessWidget {
           color: isPaused || (!userPicked && isLimitCrossed)
               ? gray700.withOpacity(0.1)
               : gray800,
-          elevation: isPaused || (!userPicked && isLimitCrossed) ? 5 : 0,
+          elevation: isPaused || (!userPicked && isLimitCrossed) ? 8 : 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 width: MediaQuery.of(context).size.width * 0.3,
@@ -66,13 +66,13 @@ class FoodItemCard2 extends StatelessWidget {
                   ),
                 ),
               ),
-              // SizedBox(
-              //   width: 20,
-              // ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.055,
+              ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.45,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 5, right: 10),
+                  padding: const EdgeInsets.only(top: 8, right: 10, bottom: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -104,9 +104,9 @@ class FoodItemCard2 extends StatelessWidget {
                           ),
                         ],
                       ),
-                      // SizedBox(
-                      //   height: 12,
-                      // ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.015,
+                      ),
                       Column(
                         children: [
                           SizedBox(
