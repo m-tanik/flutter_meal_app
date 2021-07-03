@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/screens/all_items/component/food_item_card.dart';
 import 'package:scale_kuwait_mobile_app/screens/calendar/calendar_gridView.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'component/food_item_card_2.dart';
 import 'item_model.dart';
 import 'item_full_page.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -278,7 +279,7 @@ class _AllItemsState extends State<AllItems> {
                                 itemCounter >= userLimit &&
                                     !allItems[index].userPicked
                             ? Container(
-                                child: FoodItemCard(
+                                child: FoodItemCard2(
                                   itemName: showList[index].itemName,
                                   imageUrl: showList[index].imgUrl,
                                   calAmount: showList[index].calNumber,
@@ -340,7 +341,7 @@ class _AllItemsState extends State<AllItems> {
                                   )
                                 ],
                                 child: Container(
-                                  child: FoodItemCard(
+                                  child: FoodItemCard2(
                                     itemName: showList[index].itemName,
                                     imageUrl: showList[index].imgUrl,
                                     calAmount: showList[index].calNumber,

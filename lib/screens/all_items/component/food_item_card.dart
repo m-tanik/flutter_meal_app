@@ -97,7 +97,7 @@ class FoodItemCard extends StatelessWidget {
                   color: userPicked && !isPaused
                       ? primaryColor
                       : Colors.transparent.withOpacity(0),
-                )
+                ),
               ],
             ),
             subtitle: Column(

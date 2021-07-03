@@ -46,7 +46,7 @@ class _ItemFullPageState extends State<ItemFullPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 180,
+                    height: MediaQuery.of(context).size.height * 0.25,
                     // width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
