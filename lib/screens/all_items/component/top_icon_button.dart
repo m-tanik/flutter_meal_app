@@ -6,8 +6,10 @@ class TopIconButton extends StatelessWidget {
   final IconData icon;
   final Function onTap;
   final Color color;
+  final Color iconColor;
 
-  TopIconButton({@required this.onTap, @required this.icon, this.color});
+  TopIconButton(
+      {@required this.onTap, @required this.icon, this.color, this.iconColor});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,10 @@ class TopIconButton extends StatelessWidget {
         alignment: Alignment.center,
         color: Colors.white,
         iconSize: 24,
-        icon: Icon(icon),
+        icon: Icon(
+          icon,
+          color: iconColor,
+        ),
         disabledColor: gray200,
         focusColor: primaryColor,
         onPressed: onTap,

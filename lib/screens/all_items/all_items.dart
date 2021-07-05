@@ -302,6 +302,7 @@ class _AllItemsState extends State<AllItems> {
                               ? Colors.yellow[200].withOpacity(0.6)
                               : gray800,
                           icon: Icons.pause,
+                          iconColor: Color(0xffFED47E),
                         ),
                         Container(
                           child: Center(
