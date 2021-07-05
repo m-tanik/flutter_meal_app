@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/screens/all_items/component/food_item_card.dart';
+import 'package:scale_kuwait_mobile_app/screens/all_items/component/top_icon_button.dart';
 import 'package:scale_kuwait_mobile_app/screens/calendar/calendar_gridView.dart';
+import 'package:scale_kuwait_mobile_app/screens/select_category/select_category_2.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import 'component/food_item_card_2.dart';
 import 'item_model.dart';
@@ -25,6 +27,38 @@ class _AllItemsState extends State<AllItems> {
 
   var listname = 'allItems';
 
+  List<ItemModel> showList = [];
+
+  List<ItemModel> breakfast = [
+    ItemModel(
+        itemName: 'Sandwich',
+        imgUrl: 'assets/images/sandwich.jpg',
+        calNumber: 176,
+        fatNumber: 8,
+        carbNumber: 19,
+        userPicked: false,
+        pickedIcon: Icons.check_circle,
+        proNumber: 9,
+        id: 3,
+        itemInfo:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
+  ];
+
+  List<ItemModel> lunch = [
+    ItemModel(
+        itemName: 'Pizza',
+        imgUrl: 'assets/images/pizza.jpg',
+        calNumber: 286,
+        fatNumber: 17,
+        carbNumber: 28,
+        userPicked: false,
+        pickedIcon: Icons.check_circle,
+        proNumber: 13,
+        id: 2,
+        itemInfo:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
+  ];
+
   List<ItemModel> snacks = [
     ItemModel(
         itemName: 'Burger',
@@ -40,7 +74,6 @@ class _AllItemsState extends State<AllItems> {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
   ];
 
-  List<ItemModel> showList = [];
   List<ItemModel> allItems = [
     ItemModel(
         itemName: 'Burger',
@@ -188,26 +221,70 @@ class _AllItemsState extends State<AllItems> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // ''
+                        //''
+                        // ''
+                        // ''
+                        //''
+                        // ''
+                        //1st gen select item category button
+
+                        // TopIconButton(
+                        //     onTap: () async {
+                        //       String selectedCategory = await Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //           builder: (context) => SelectCategory(),
+                        //         ),
+                        //       );
+                        //       print(selectedCategory);
+                        //       setState(() {
+                        //         if (selectedCategory == 'All') {
+                        //           showList = allItems;
+                        //         } else if (selectedCategory == 'Snacks') {
+                        //           showList = snacks;
+                        //           print(showList);
+                        //         }
+                        //       });
+                        //     },
+                        //     color: gray700,
+                        //     icon: Icons.list_alt_rounded),
+
+                        // ''
+                        //''
+                        // ''
+                        // ''
+                        //''
+                        // ''
+
+                        //2nd gen select item category button
+
                         TopIconButton(
-                            onTap: () async {
-                              String selectedCategory = await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SelectCategory(),
-                                ),
-                              );
-                              print(selectedCategory);
-                              setState(() {
-                                if (selectedCategory == 'All') {
-                                  showList = allItems;
-                                } else if (selectedCategory == 'Snacks') {
-                                  showList = snacks;
-                                  print(showList);
-                                }
-                              });
-                            },
-                            color: gray700,
-                            icon: Icons.list_alt_rounded),
+                          onTap: () async {
+                            String selectedCategory = await showDialog(
+                              context: context,
+                              builder: (_) => SelectCategory2(),
+                            );
+                            setState(() {
+                              if (selectedCategory == 'All') {
+                                showList = allItems;
+                              } else if (selectedCategory == 'Snacks') {
+                                showList = snacks;
+                                print(showList);
+                              } else if (selectedCategory == 'Lunch') {
+                                showList = lunch;
+                                print(showList);
+                              } else if (selectedCategory == 'Breakfast') {
+                                showList = breakfast;
+                                print(showList);
+                              } else {
+                                showList = allItems;
+                              }
+                            });
+                          },
+                          icon: Icons.list_alt_rounded,
+                          color: gray800,
+                        ),
                         TopIconButton(
                           onTap: () {
                             setState(() {
@@ -382,33 +459,6 @@ class _AllItemsState extends State<AllItems> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-//Top 3 icons in this page
-class TopIconButton extends StatelessWidget {
-  final IconData icon;
-  final Function onTap;
-  final Color color;
-
-  TopIconButton({@required this.onTap, @required this.icon, this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(18), color: color),
-      padding: EdgeInsets.all(6),
-      child: IconButton(
-        alignment: Alignment.center,
-        color: Colors.white,
-        iconSize: 24,
-        icon: Icon(icon),
-        disabledColor: gray200,
-        focusColor: primaryColor,
-        onPressed: onTap,
       ),
     );
   }
