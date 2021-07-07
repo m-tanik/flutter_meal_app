@@ -15,8 +15,8 @@ class TopIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(18), color: color),
-      padding: EdgeInsets.all(6),
+          BoxDecoration(borderRadius: BorderRadius.circular(25), color: color),
+      padding: EdgeInsets.all(10),
       child: IconButton(
         alignment: Alignment.center,
         color: Colors.white,

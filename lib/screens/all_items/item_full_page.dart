@@ -27,6 +27,8 @@ class ItemFullPage extends StatefulWidget {
 }
 
 class _ItemFullPageState extends State<ItemFullPage> {
+  bool itemSelected = false;
+
   List<bool> isSelected = List.generate(4, (_) => false);
 
   Container calFatCarbProContainer() {
@@ -354,14 +356,15 @@ class _ItemFullPageState extends State<ItemFullPage> {
     // String imageUrl = widget.imageUrl;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backwardsCompatibility: true,
         elevation: 0,
-        backgroundColor: darkBG,
+        backgroundColor: Colors.transparent,
       ),
       body: Background(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 32, vertical: 30),
+          padding: EdgeInsets.only(left: 32, top: 60, right: 32, bottom: 20),
           child: Container(
             child: SingleChildScrollView(
               child: Column(
@@ -434,7 +437,10 @@ class _ItemFullPageState extends State<ItemFullPage> {
                   ),
                   FillButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      setState(() {
+                        itemSelected = true;
+                      });
+                      Navigator.pop(context, itemSelected);
                     },
                     text: 'Select',
                     fontWeight: FontWeight.w700,

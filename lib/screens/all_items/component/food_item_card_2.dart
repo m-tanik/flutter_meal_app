@@ -83,7 +83,7 @@ class FoodItemCard2 extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.45,
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 8, right: 10, bottom: 8),
+                        const EdgeInsets.only(top: 8, right: 12, bottom: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -95,11 +95,16 @@ class FoodItemCard2 extends StatelessWidget {
                               child: Flexible(
                                 child: Text(
                                   '$itemName',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: isPaused
-                                          ? gray200.withOpacity(0.2)
-                                          : gray50),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .merge(
+                                        TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: isPaused
+                                                ? gray200.withOpacity(0.2)
+                                                : gray50),
+                                      ),
                                 ),
                               ),
                             ),
@@ -116,12 +121,12 @@ class FoodItemCard2 extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.015,
+                          height: MediaQuery.of(context).size.height * 0.011,
                         ),
                         Column(
                           children: [
                             SizedBox(
-                              height: 12,
+                              height: 10,
                             ),
                             Divider(
                               height: 2,
@@ -141,7 +146,7 @@ class FoodItemCard2 extends StatelessWidget {
                                           fontSize: 10,
                                           color: isPaused
                                               ? gray200.withOpacity(0.2)
-                                              : Colors.yellow),
+                                              : Color(0xFFFED47E)),
                                     ),
                                     SizedBox(
                                       height: 8,
@@ -164,7 +169,7 @@ class FoodItemCard2 extends StatelessWidget {
                                           fontSize: 10,
                                           color: isPaused
                                               ? gray200.withOpacity(0.2)
-                                              : Colors.yellow),
+                                              : Color(0xFFFED47E)),
                                     ),
                                     SizedBox(
                                       height: 8,
@@ -187,7 +192,7 @@ class FoodItemCard2 extends StatelessWidget {
                                           fontSize: 10,
                                           color: isPaused
                                               ? gray200.withOpacity(0.2)
-                                              : Colors.yellow),
+                                              : Color(0xFFFED47E)),
                                     ),
                                     SizedBox(
                                       height: 8,
@@ -210,7 +215,7 @@ class FoodItemCard2 extends StatelessWidget {
                                           fontSize: 10,
                                           color: isPaused
                                               ? gray200.withOpacity(0.2)
-                                              : Colors.yellow),
+                                              : Color(0xFFFED47E)),
                                     ),
                                     SizedBox(
                                       height: 8,

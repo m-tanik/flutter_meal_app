@@ -143,7 +143,10 @@ class _AllItemsState extends State<AllItems> {
         children: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              size: 16,
+            ),
             color: primaryColor,
           ),
           SizedBox(
@@ -162,11 +165,11 @@ class _AllItemsState extends State<AllItems> {
                   color: primaryColor,
                 ),
                 SizedBox(
-                  width: 3,
+                  width: 12,
                 ),
                 Text(
                   '12 Aug, 2020',
-                  style: Theme.of(context).textTheme.headline5.merge(TextStyle(
+                  style: Theme.of(context).textTheme.headline4.merge(TextStyle(
                       color: primaryColor, fontWeight: FontWeight.w700)),
                 ),
               ],
@@ -177,7 +180,10 @@ class _AllItemsState extends State<AllItems> {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.arrow_forward_ios),
+            icon: Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+            ),
             color: primaryColor,
           ),
         ],
@@ -191,7 +197,7 @@ class _AllItemsState extends State<AllItems> {
     return Container(
       child: Card(
         color: darkBG,
-        elevation: 5,
+        elevation: 12,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
@@ -278,6 +284,9 @@ class _AllItemsState extends State<AllItems> {
                 color: isPaused ? Colors.yellow[200].withOpacity(0.6) : gray800,
                 icon: Icons.pause,
                 iconColor: Color(0xffFED47E),
+              ),
+              SizedBox(
+                width: 12,
               ),
               Container(
                 child: Center(
@@ -437,10 +446,12 @@ class _AllItemsState extends State<AllItems> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   'All',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.headline3.merge(
+                        TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: gray50,
+                        ),
+                      ),
                 ),
               ),
               SizedBox(
