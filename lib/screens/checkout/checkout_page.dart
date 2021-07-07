@@ -23,14 +23,20 @@ class CheckoutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backwardsCompatibility: true,
         elevation: 0,
-        backgroundColor: darkBG,
+        backgroundColor: Colors.transparent,
       ),
       body: Background(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          padding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: MediaQuery.of(context).size.height * .1,
+            bottom: 15,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -41,11 +47,12 @@ class CheckoutPage extends StatelessWidget {
                     Container(
                       child: Text(
                         'Checkout',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: Theme.of(context).textTheme.headline3.merge(
+                              TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: gray50,
+                              ),
+                            ),
                       ),
                     ),
                     SizedBox(
@@ -57,21 +64,36 @@ class CheckoutPage extends StatelessWidget {
                         children: [
                           Text(
                             '${packageName} - ${proNumber}g protein',
-                            style: TextStyle(fontSize: 15),
+                            style: Theme.of(context).textTheme.headline5.merge(
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: gray200,
+                                  ),
+                                ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             '$mealNumber Meals + $snackNumber Snacks',
-                            style: TextStyle(fontSize: 15),
+                            style: Theme.of(context).textTheme.headline5.merge(
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: gray200,
+                                  ),
+                                ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
                             '$days Days',
-                            style: TextStyle(fontSize: 15),
+                            style: Theme.of(context).textTheme.headline5.merge(
+                                  TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: gray200,
+                                  ),
+                                ),
                           ),
                           SizedBox(
                             height: 30,
@@ -81,15 +103,23 @@ class CheckoutPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Total',
-                                style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold),
+                                style:
+                                    Theme.of(context).textTheme.headline3.merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: gray50,
+                                          ),
+                                        ),
                               ),
                               Text(
                                 '$totalKD Kd',
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: primaryColor),
+                                style:
+                                    Theme.of(context).textTheme.headline3.merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: primaryColor,
+                                          ),
+                                        ),
                               ),
                             ],
                           ),
@@ -115,6 +145,9 @@ class CheckoutPage extends StatelessWidget {
                   );
                 },
                 text: 'Proceed to Billing',
+                textColor: gray50,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ],
           ),

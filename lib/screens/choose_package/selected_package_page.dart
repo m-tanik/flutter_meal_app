@@ -57,9 +57,11 @@ class SelectedPackage extends StatelessWidget {
       body: Background(
         child: Container(
           padding: EdgeInsets.only(
-              left: 25,
-              right: 25,
-              top: MediaQuery.of(context).size.height * .1),
+            left: 25,
+            right: 25,
+            top: MediaQuery.of(context).size.height * .1,
+            bottom: 15,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
