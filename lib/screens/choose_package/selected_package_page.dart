@@ -48,41 +48,52 @@ class SelectedPackage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backwardsCompatibility: true,
         elevation: 0,
-        backgroundColor: darkBG,
+        backgroundColor: Colors.transparent,
       ),
       body: Background(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.only(
+              left: 25,
+              right: 25,
+              top: MediaQuery.of(context).size.height * .1),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Icon(
                     packageIcon,
                     color: primaryColor,
+                    size: 31,
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
                     packageName,
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headline2.merge(
+                          TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: gray50,
+                          ),
+                        ),
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
                     '${proAmount}g Protein',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
+                    style: Theme.of(context).textTheme.headline5.merge(
+                          TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: gray200,
+                          ),
+                        ),
                   ),
                 ],
               ),
@@ -92,7 +103,12 @@ class SelectedPackage extends StatelessWidget {
               Container(
                 child: Text(
                   'With ${packageName} meal plan you will get ${proAmount}g of Protein for each meal and your choice of carbohydrates portions. Lose weight, eat healthy, and live longer.',
-                  style: TextStyle(fontSize: 15.0, color: gray200),
+                  style: Theme.of(context).textTheme.bodyText1.merge(
+                        TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: gray300,
+                        ),
+                      ),
                 ),
               ),
               SizedBox(
@@ -102,29 +118,36 @@ class SelectedPackage extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: packageCards.length,
                   itemBuilder: (context, index) {
-                    return LifeStyleCard(
-                      mealNumber: packageCards[index].mealNumber,
-                      snackNumber: packageCards[index].snackNumber,
-                      daysLeft: packageCards[index].daysOnLeftCard,
-                      kdLeft: packageCards[index].kdLeft,
-                      kdRight: packageCards[index].kdRight,
-                      daysRight: packageCards[index].daysOnRightCard,
-                      offPercentage: packageCards[index].offPercentage,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CheckoutPage(
-                              mealNumber: packageCards[index].mealNumber,
-                              snackNumber: packageCards[index].snackNumber,
-                              days: packageCards[index].daysOnLeftCard,
-                              totalKD: packageCards[index].kdRight,
-                              packageName: packageName,
-                              proNumber: proAmount,
-                            ),
-                          ),
-                        );
-                      },
+                    return Column(
+                      children: [
+                        LifeStyleCard(
+                          mealNumber: packageCards[index].mealNumber,
+                          snackNumber: packageCards[index].snackNumber,
+                          daysLeft: packageCards[index].daysOnLeftCard,
+                          kdLeft: packageCards[index].kdLeft,
+                          kdRight: packageCards[index].kdRight,
+                          daysRight: packageCards[index].daysOnRightCard,
+                          offPercentage: packageCards[index].offPercentage,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CheckoutPage(
+                                  mealNumber: packageCards[index].mealNumber,
+                                  snackNumber: packageCards[index].snackNumber,
+                                  days: packageCards[index].daysOnLeftCard,
+                                  totalKD: packageCards[index].kdRight,
+                                  packageName: packageName,
+                                  proNumber: proAmount,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     );
                   },
                 ),
@@ -163,7 +186,7 @@ class LifeStyleCard extends StatelessWidget {
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(25),
         ),
         color: gray800,
         child: Padding(
@@ -177,47 +200,72 @@ class LifeStyleCard extends StatelessWidget {
                   children: [
                     Text(
                       '$mealNumber Meals',
-                      style: TextStyle(color: primaryColor, fontSize: 20),
+                      style: Theme.of(context).textTheme.headline5.merge(
+                            TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: primaryColor,
+                            ),
+                          ),
                     ),
                     SizedBox(
                       width: 10.0,
                     ),
                     Text(
                       ' + $snackNumber Snacks',
-                      style: TextStyle(color: gray50, fontSize: 10),
+                      style: Theme.of(context).textTheme.bodyText2.merge(
+                            TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: gray300,
+                            ),
+                          ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 12,
+                height: 10,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
+                    width: MediaQuery.of(context).size.width * .35,
                     child: GestureDetector(
                       onTap: onPressed,
                       child: Card(
-                        elevation: 5,
+                        elevation: 3,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(25),
                         ),
                         color: gray700,
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 20),
+                              horizontal: 15, vertical: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('$daysLeft Days'),
+                              Text(
+                                '$daysLeft Days',
+                                style:
+                                    Theme.of(context).textTheme.bodyText2.merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            color: gray300,
+                                          ),
+                                        ),
+                              ),
                               SizedBox(
                                 height: 10,
                               ),
                               Text(
                                 '$kdLeft KD',
-                                style: TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold),
+                                style:
+                                    Theme.of(context).textTheme.headline3.merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: gray50,
+                                          ),
+                                        ),
                               ),
                             ],
                           ),
@@ -228,40 +276,68 @@ class LifeStyleCard extends StatelessWidget {
                   SizedBox(
                     width: 12,
                   ),
-                  GestureDetector(
-                    onTap: onPressed,
-                    child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      color: gray700,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text('$daysRight Days'),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  '$offPercentage' + '% off',
-                                  style: TextStyle(color: primaryColor),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              '$kdRight KD',
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                  Container(
+                    width: MediaQuery.of(context).size.width * .35,
+                    child: GestureDetector(
+                      onTap: onPressed,
+                      child: Card(
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        color: gray700,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    '$daysRight Days',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        .merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            color: gray300,
+                                          ),
+                                        ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    '$offPercentage' + '% off',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        .merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: primaryColor,
+                                          ),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                '$kdRight KD',
+                                style:
+                                    Theme.of(context).textTheme.headline3.merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: gray50,
+                                          ),
+                                        ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

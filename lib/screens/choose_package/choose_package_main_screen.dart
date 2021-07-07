@@ -17,31 +17,37 @@ class _ChoosePackageState extends State<ChoosePackage> {
       packageName: 'LifeStyle',
       proAmount: '100',
       packageIcon: Icons.lunch_dining,
+      subtitle: 'Losing Weight',
     ),
     SelectPackage(
       packageName: 'Scale',
       proAmount: '150',
       packageIcon: Icons.accessibility_outlined,
+      subtitle: 'Athletics',
     ),
     SelectPackage(
       packageName: 'Bodybuilding',
       proAmount: '200',
       packageIcon: Icons.airline_seat_flat_angled,
+      subtitle: 'Bodybuilders',
     ),
     SelectPackage(
       packageName: 'LifeStyle',
       proAmount: '100',
       packageIcon: Icons.lunch_dining,
+      subtitle: 'Losing Weight',
     ),
     SelectPackage(
       packageName: 'Scale',
       proAmount: '150',
       packageIcon: Icons.accessibility_outlined,
+      subtitle: 'Athletics',
     ),
     SelectPackage(
       packageName: 'Bodybuilding',
       proAmount: '200',
       packageIcon: Icons.airline_seat_flat_angled,
+      subtitle: 'Bodybuilders',
     ),
   ];
 
@@ -54,86 +60,50 @@ class _ChoosePackageState extends State<ChoosePackage> {
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Choose a package',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: Theme.of(context).textTheme.headline3.merge(
+                    TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: gray50,
+                    ),
+                  ),
             ),
             SizedBox(
               height: 30,
             ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => LifeStyle(),
-            //       ),
-            //     );
-            //   },
-            //   child: PackageCard(
-            //     cardName: 'LifeStyle',
-            //     amount: 100,
-            //     icon: Icons.lunch_dining,
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => LifeStyle(),
-            //       ),
-            //     );
-            //   },
-            //   child: PackageCard(
-            //     cardName: 'Scale',
-            //     amount: 150,
-            //     icon: Icons.accessibility_outlined,
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => LifeStyle(),
-            //       ),
-            //     );
-            //   },
             Expanded(
               child: ListView.builder(
                 itemCount: packages.length,
                 itemBuilder: (context, index) {
-                  return PackageCard(
-                    cardName: packages[index].packageName,
-                    amount: packages[index].proAmount,
-                    icon: packages[index].packageIcon,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SelectedPackage(
-                            packageName: packages[index].packageName,
-                            proAmount: packages[index].proAmount,
-                            packageIcon: packages[index].packageIcon,
-                          ),
-                        ),
-                      );
-                    },
+                  return Column(
+                    children: [
+                      PackageCard(
+                        cardName: packages[index].packageName,
+                        amount: packages[index].proAmount,
+                        icon: packages[index].packageIcon,
+                        subtitle: packages[index].subtitle,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SelectedPackage(
+                                packageName: packages[index].packageName,
+                                proAmount: packages[index].proAmount,
+                                packageIcon: packages[index].packageIcon,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                    ],
                   );
                 },
               ),
@@ -148,10 +118,17 @@ class _ChoosePackageState extends State<ChoosePackage> {
 class PackageCard extends StatelessWidget {
   final String cardName;
   final String amount;
+  final String subtitle;
   final IconData icon;
   final Function onTap;
 
-  PackageCard({this.cardName, this.amount, this.icon, this.onTap});
+  PackageCard({
+    this.cardName,
+    this.amount,
+    this.icon,
+    this.onTap,
+    this.subtitle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -177,16 +154,36 @@ class PackageCard extends StatelessWidget {
                   children: [
                     Text(
                       cardName,
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.headline4.merge(
+                            TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: gray50,
+                            ),
+                          ),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      subtitle,
+                      style: Theme.of(context).textTheme.bodyText2.merge(
+                            TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFFFED47E),
+                            ),
+                          ),
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Text(
                       '$amount' + 'g Protein',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText2.merge(
+                            TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: gray50,
+                            ),
+                          ),
                     ),
                   ],
                 ),
