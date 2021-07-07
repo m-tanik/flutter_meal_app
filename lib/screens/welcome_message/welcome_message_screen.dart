@@ -33,30 +33,39 @@ class WelcomeMessage extends StatelessWidget {
                   children: [
                     Text(
                       'Welcome',
-                      style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                      //   style: TextStyle(
+                      //       fontSize: 50,
+                      //       fontWeight: FontWeight.bold,
+                      //       color: Colors.white),
+                      style: Theme.of(context).textTheme.headline1.merge(
+                            TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                     ),
                     SizedBox(height: 20),
                     Row(
                       children: [
                         Text(
                           'All of our foods are just ',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         Text(
                           'Couple of Taps Away',
-                          style: TextStyle(fontSize: 16, color: Colors.green),
+                          style: Theme.of(context).textTheme.bodyText1.merge(
+                                TextStyle(
+                                  color: primaryColor,
+                                ),
+                              ),
                         ),
                       ],
                     ),
                     Text(
                       'Buy one of our packages to start ordering food',
-                      style: TextStyle(fontSize: 16),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 13,
+                      height: MediaQuery.of(context).size.height * 0.18,
                     ),
                     FillButton(
                       onPressed: () {
@@ -70,7 +79,7 @@ class WelcomeMessage extends StatelessWidget {
                       text: 'Purchase a Package',
                       textColor: Colors.white,
                       radius: 30,
-                      fontSize: 13,
+                      fontSize: 16,
                     ),
                   ],
                 ),
@@ -100,7 +109,6 @@ class MyClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
     throw UnimplementedError();
   }
 }

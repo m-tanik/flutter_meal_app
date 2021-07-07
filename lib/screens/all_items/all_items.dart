@@ -134,16 +134,281 @@ class _AllItemsState extends State<AllItems> {
     showList = allItems;
   }
 
+  // date selector / calender on top
+
+  Container topCalenderContainer() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.arrow_back_ios),
+            color: primaryColor,
+          ),
+          SizedBox(
+            width: 35,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return CalenderGridView();
+              }));
+            },
+            child: Row(
+              children: [
+                Icon(
+                  Icons.calendar_today_outlined,
+                  color: primaryColor,
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  '12 Aug, 2020',
+                  style: Theme.of(context).textTheme.headline5.merge(TextStyle(
+                      color: primaryColor, fontWeight: FontWeight.w700)),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: 35,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.arrow_forward_ios),
+            color: primaryColor,
+          ),
+        ],
+      ),
+    );
+  }
+
+  // top buttons row and functionality
+
+  Container topRowButtonsContainer() {
+    return Container(
+      child: Card(
+        color: darkBG,
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // ''
+              //''
+              // ''
+              // ''
+              //''
+              // ''
+              //1st gen select item category button
+
+              // TopIconButton(
+              //     onTap: () async {
+              //       String selectedCategory = await Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => SelectCategory(),
+              //         ),
+              //       );
+              //       print(selectedCategory);
+              //       setState(() {
+              //         if (selectedCategory == 'All') {
+              //           showList = allItems;
+              //         } else if (selectedCategory == 'Snacks') {
+              //           showList = snacks;
+              //           print(showList);
+              //         }
+              //       });
+              //     },
+              //     color: gray700,
+              //     icon: Icons.list_alt_rounded),
+
+              // ''
+              //''
+              // ''
+              // ''
+              //''
+              // ''
+
+              //2nd gen select item category button
+
+              TopIconButton(
+                onTap: () async {
+                  String selectedCategory = await showDialog(
+                    context: context,
+                    builder: (_) => SelectCategory2(),
+                  );
+                  setState(() {
+                    if (selectedCategory == 'All') {
+                      showList = allItems;
+                    } else if (selectedCategory == 'Snacks') {
+                      showList = snacks;
+                      print(showList);
+                    } else if (selectedCategory == 'Lunch') {
+                      showList = lunch;
+                      print(showList);
+                    } else if (selectedCategory == 'Breakfast') {
+                      showList = breakfast;
+                      print(showList);
+                    } else {
+                      showList = allItems;
+                    }
+                  });
+                },
+                icon: Icons.list_alt_rounded,
+                color: gray800,
+              ),
+              TopIconButton(
+                onTap: () {
+                  setState(() {
+                    isPaused = !isPaused;
+                    itemCounter = 0;
+                    userPicked = false;
+                    showList.map((e) => e.userPicked = false).toList();
+
+                    // isPaused = !isPaused;
+                  });
+                },
+                color: isPaused ? Colors.yellow[200].withOpacity(0.6) : gray800,
+                icon: Icons.pause,
+                iconColor: Color(0xffFED47E),
+              ),
+              Container(
+                child: Center(
+                  child: Text(
+                    '$itemCounter / 2',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              ),
+              !isPaused
+                  ? TopIconButton(
+                      onTap: isPaused ? () {} : () {},
+                      icon: Icons.check,
+                      color: itemCounter > 0 ? primaryColor : gray800,
+                    )
+                  : Container(
+                      child: SizedBox(
+                        width: 60,
+                      ),
+                    ),
+            ],
+          ),
+        ),
+      ), //top icon card
+    );
+  }
+
+  //listview builder and functionality
+
+  ListView listviewBuilder() {
+    return ListView.builder(
+        itemCount: showList.length,
+        itemBuilder: (context, index) {
+          return Container(
+            child: isPaused ||
+                    itemCounter >= userLimit && !allItems[index].userPicked
+                ? Container(
+                    child: FoodItemCard2(
+                      itemName: showList[index].itemName,
+                      imageUrl: showList[index].imgUrl,
+                      calAmount: showList[index].calNumber,
+                      carbAmount: showList[index].carbNumber,
+                      fatAmount: showList[index].fatNumber,
+                      proAmount: showList[index].proNumber,
+                      isPaused: isPaused,
+                      isLimitCrossed: itemCounter >= userLimit,
+                      userPicked: showList[index].userPicked,
+                      pickedIcon: showList[index].pickedIcon,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ItemFullPage(
+                              imageUrl: showList[index].imgUrl,
+                              itemName: showList[index].itemName,
+                              calAmount: showList[index].calNumber,
+                              fatAmount: showList[index].fatNumber,
+                              carbAmount: showList[index].carbNumber,
+                              proAmount: showList[index].proNumber,
+                              itemInfo: showList[index].itemInfo,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                : Slidable(
+                    actionPane: SlidableDrawerActionPane(),
+                    actionExtentRatio: 0.25,
+                    secondaryActions: [
+                      IconSlideAction(
+                        caption: showList[index].userPicked ? 'Undo' : 'Select',
+                        color: darkBG,
+                        icon: Icons.check,
+                        onTap: () {
+                          setState(() {
+                            showList[index].userPicked =
+                                !showList[index].userPicked;
+                            if (showList[index].userPicked == false &&
+                                itemCounter > 0) {
+                              itemCounter--;
+                            } else if (showList[index].userPicked == false &&
+                                itemCounter == 2) {
+                              return;
+                            } else if (showList[index].userPicked == true &&
+                                itemCounter < 2) {
+                              itemCounter++;
+                            }
+                          });
+                        },
+                      )
+                    ],
+                    child: Container(
+                      child: FoodItemCard2(
+                        itemName: showList[index].itemName,
+                        imageUrl: showList[index].imgUrl,
+                        calAmount: showList[index].calNumber,
+                        carbAmount: showList[index].carbNumber,
+                        fatAmount: showList[index].fatNumber,
+                        proAmount: showList[index].proNumber,
+                        isPaused: isPaused,
+                        isLimitCrossed: itemCounter >= userLimit,
+                        userPicked: showList[index].userPicked,
+                        pickedIcon: showList[index].pickedIcon,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ItemFullPage(
+                                imageUrl: showList[index].imgUrl,
+                                itemName: showList[index].itemName,
+                                calAmount: showList[index].calNumber,
+                                fatAmount: showList[index].fatNumber,
+                                carbAmount: showList[index].carbNumber,
+                                proAmount: showList[index].proNumber,
+                                itemInfo: showList[index].itemInfo,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+            // ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // this appbar contains buttons that shows date and go to the next date
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backwardsCompatibility: false,
-      //   backgroundColor: darkBG,
-      //   title:
-      // ),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -153,181 +418,16 @@ class _AllItemsState extends State<AllItems> {
               SizedBox(
                 height: 10,
               ),
+
               //this is the top calender container
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.arrow_back_ios),
-                      color: primaryColor,
-                    ),
-                    SizedBox(
-                      width: 35,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return CalenderGridView();
-                        }));
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.calendar_today_outlined,
-                            color: primaryColor,
-                          ),
-                          SizedBox(
-                            width: 3,
-                          ),
-                          Text(
-                            '12 Aug, 2020',
-                            style: Theme.of(context).textTheme.headline5.merge(
-                                TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.w700)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 35,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.arrow_forward_ios),
-                      color: primaryColor,
-                    ),
-                  ],
-                ),
-              ),
+              topCalenderContainer(),
 
               SizedBox(
                 height: 20,
               ),
 
               // this container contains top Row below the app bar
-              Container(
-                child: Card(
-                  color: darkBG,
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // ''
-                        //''
-                        // ''
-                        // ''
-                        //''
-                        // ''
-                        //1st gen select item category button
-
-                        // TopIconButton(
-                        //     onTap: () async {
-                        //       String selectedCategory = await Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => SelectCategory(),
-                        //         ),
-                        //       );
-                        //       print(selectedCategory);
-                        //       setState(() {
-                        //         if (selectedCategory == 'All') {
-                        //           showList = allItems;
-                        //         } else if (selectedCategory == 'Snacks') {
-                        //           showList = snacks;
-                        //           print(showList);
-                        //         }
-                        //       });
-                        //     },
-                        //     color: gray700,
-                        //     icon: Icons.list_alt_rounded),
-
-                        // ''
-                        //''
-                        // ''
-                        // ''
-                        //''
-                        // ''
-
-                        //2nd gen select item category button
-
-                        TopIconButton(
-                          onTap: () async {
-                            String selectedCategory = await showDialog(
-                              context: context,
-                              builder: (_) => SelectCategory2(),
-                            );
-                            setState(() {
-                              if (selectedCategory == 'All') {
-                                showList = allItems;
-                              } else if (selectedCategory == 'Snacks') {
-                                showList = snacks;
-                                print(showList);
-                              } else if (selectedCategory == 'Lunch') {
-                                showList = lunch;
-                                print(showList);
-                              } else if (selectedCategory == 'Breakfast') {
-                                showList = breakfast;
-                                print(showList);
-                              } else {
-                                showList = allItems;
-                              }
-                            });
-                          },
-                          icon: Icons.list_alt_rounded,
-                          color: gray800,
-                        ),
-                        TopIconButton(
-                          onTap: () {
-                            setState(() {
-                              isPaused = !isPaused;
-                              itemCounter = 0;
-                              userPicked = false;
-                              showList
-                                  .map((e) => e.userPicked = false)
-                                  .toList();
-
-                              // isPaused = !isPaused;
-                            });
-                          },
-                          color: isPaused
-                              ? Colors.yellow[200].withOpacity(0.6)
-                              : gray800,
-                          icon: Icons.pause,
-                          iconColor: Color(0xffFED47E),
-                        ),
-                        Container(
-                          child: Center(
-                            child: Text(
-                              '$itemCounter / 2',
-                              style: TextStyle(fontSize: 15),
-                            ),
-                          ),
-                        ),
-                        !isPaused
-                            ? TopIconButton(
-                                onTap: isPaused ? () {} : () {},
-                                icon: Icons.check,
-                                color: itemCounter > 0 ? primaryColor : gray800,
-                              )
-                            : Container(
-                                child: SizedBox(
-                                  width: 60,
-                                ),
-                              ),
-                      ],
-                    ),
-                  ),
-                ), //top icon card
-              ),
+              topRowButtonsContainer(),
               SizedBox(
                 height: 20,
               ),
@@ -349,113 +449,7 @@ class _AllItemsState extends State<AllItems> {
 
               //this is the listview of all cards
               Expanded(
-                child: ListView.builder(
-                    itemCount: showList.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: isPaused ||
-                                itemCounter >= userLimit &&
-                                    !allItems[index].userPicked
-                            ? Container(
-                                child: FoodItemCard2(
-                                  itemName: showList[index].itemName,
-                                  imageUrl: showList[index].imgUrl,
-                                  calAmount: showList[index].calNumber,
-                                  carbAmount: showList[index].carbNumber,
-                                  fatAmount: showList[index].fatNumber,
-                                  proAmount: showList[index].proNumber,
-                                  isPaused: isPaused,
-                                  isLimitCrossed: itemCounter >= userLimit,
-                                  userPicked: showList[index].userPicked,
-                                  pickedIcon: showList[index].pickedIcon,
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ItemFullPage(
-                                          imageUrl: showList[index].imgUrl,
-                                          itemName: showList[index].itemName,
-                                          calAmount: showList[index].calNumber,
-                                          fatAmount: showList[index].fatNumber,
-                                          carbAmount:
-                                              showList[index].carbNumber,
-                                          proAmount: showList[index].proNumber,
-                                          itemInfo: showList[index].itemInfo,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              )
-                            : Slidable(
-                                actionPane: SlidableDrawerActionPane(),
-                                actionExtentRatio: 0.25,
-                                secondaryActions: [
-                                  IconSlideAction(
-                                    caption: showList[index].userPicked
-                                        ? 'Undo'
-                                        : 'Select',
-                                    color: darkBG,
-                                    icon: Icons.check,
-                                    onTap: () {
-                                      setState(() {
-                                        showList[index].userPicked =
-                                            !showList[index].userPicked;
-                                        if (showList[index].userPicked ==
-                                                false &&
-                                            itemCounter > 0) {
-                                          itemCounter--;
-                                        } else if (showList[index].userPicked ==
-                                                false &&
-                                            itemCounter == 2) {
-                                          return;
-                                        } else if (showList[index].userPicked ==
-                                                true &&
-                                            itemCounter < 2) {
-                                          itemCounter++;
-                                        }
-                                      });
-                                    },
-                                  )
-                                ],
-                                child: Container(
-                                  child: FoodItemCard2(
-                                    itemName: showList[index].itemName,
-                                    imageUrl: showList[index].imgUrl,
-                                    calAmount: showList[index].calNumber,
-                                    carbAmount: showList[index].carbNumber,
-                                    fatAmount: showList[index].fatNumber,
-                                    proAmount: showList[index].proNumber,
-                                    isPaused: isPaused,
-                                    isLimitCrossed: itemCounter >= userLimit,
-                                    userPicked: showList[index].userPicked,
-                                    pickedIcon: showList[index].pickedIcon,
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => ItemFullPage(
-                                            imageUrl: showList[index].imgUrl,
-                                            itemName: showList[index].itemName,
-                                            calAmount:
-                                                showList[index].calNumber,
-                                            fatAmount:
-                                                showList[index].fatNumber,
-                                            carbAmount:
-                                                showList[index].carbNumber,
-                                            proAmount:
-                                                showList[index].proNumber,
-                                            itemInfo: showList[index].itemInfo,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                        // ),
-                      );
-                    }),
+                child: listviewBuilder(),
               ),
             ],
           ),
