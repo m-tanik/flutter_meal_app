@@ -31,14 +31,24 @@ class ConfirmMessage extends StatelessWidget {
                 ),
                 Text(
                   'Purchase Completed',
-                  style: TextStyle(fontSize: 18, color: gray50),
+                  style: Theme.of(context).textTheme.headline4.merge(
+                        TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: gray200,
+                        ),
+                      ),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
                   'Successfully',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headline2.merge(
+                        TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: gray50,
+                        ),
+                      ),
                 ),
               ],
             ),
@@ -60,10 +70,12 @@ class ConfirmMessage extends StatelessWidget {
                 children: [
                   Text(
                     'Start Ordering',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: gray50,
-                    ),
+                    style: Theme.of(context).textTheme.headline5.merge(
+                          TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: gray50,
+                          ),
+                        ),
                   ),
                   SizedBox(
                     width: 5,
@@ -71,6 +83,7 @@ class ConfirmMessage extends StatelessWidget {
                   Icon(
                     Icons.arrow_forward,
                     color: gray50,
+                    size: 18,
                   ),
                 ],
               ),
