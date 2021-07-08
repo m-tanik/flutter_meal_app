@@ -32,7 +32,8 @@ class _AllItemsState extends State<AllItems> {
   List<ItemModel> breakfast = [
     ItemModel(
         itemName: 'Sandwich',
-        imgUrl: 'assets/images/sandwich.jpg',
+        imgUrl:
+            'https://images.unsplash.com/photo-1481070414801-51fd732d7184?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=925&q=80',
         calNumber: 176,
         fatNumber: 8,
         carbNumber: 19,
@@ -47,7 +48,8 @@ class _AllItemsState extends State<AllItems> {
   List<ItemModel> lunch = [
     ItemModel(
         itemName: 'Pizza',
-        imgUrl: 'assets/images/pizza.jpg',
+        imgUrl:
+            'https://images.unsplash.com/photo-1594007654729-407eedc4be65?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=669&q=80',
         calNumber: 286,
         fatNumber: 17,
         carbNumber: 28,
@@ -62,7 +64,8 @@ class _AllItemsState extends State<AllItems> {
   List<ItemModel> snacks = [
     ItemModel(
         itemName: 'Burger',
-        imgUrl: 'assets/images/burger.jpg',
+        imgUrl:
+            'https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=701&q=80',
         calNumber: 206,
         fatNumber: 10,
         carbNumber: 21,
@@ -77,7 +80,9 @@ class _AllItemsState extends State<AllItems> {
   List<ItemModel> allItems = [
     ItemModel(
         itemName: 'Burger',
-        imgUrl: 'assets/images/burger.jpg',
+        // imgUrl: 'assets/images/burger.jpg',
+        imgUrl:
+            'https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=701&q=80',
         calNumber: 206,
         fatNumber: 10,
         carbNumber: 21,
@@ -89,7 +94,8 @@ class _AllItemsState extends State<AllItems> {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
     ItemModel(
         itemName: 'Pizza',
-        imgUrl: 'assets/images/pizza.jpg',
+        imgUrl:
+            'https://images.unsplash.com/photo-1594007654729-407eedc4be65?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=669&q=80',
         calNumber: 286,
         fatNumber: 17,
         carbNumber: 28,
@@ -101,7 +107,8 @@ class _AllItemsState extends State<AllItems> {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
     ItemModel(
         itemName: 'Pizza',
-        imgUrl: 'assets/images/pizza.jpg',
+        imgUrl:
+            'https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
         calNumber: 286,
         fatNumber: 17,
         carbNumber: 28,
@@ -113,7 +120,8 @@ class _AllItemsState extends State<AllItems> {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar integer scelerisque neque viverra elit.'),
     ItemModel(
         itemName: 'Sandwich',
-        imgUrl: 'assets/images/sandwich.jpg',
+        imgUrl:
+            'https://images.unsplash.com/photo-1481070414801-51fd732d7184?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=925&q=80',
         calNumber: 176,
         fatNumber: 8,
         carbNumber: 19,

@@ -1,6 +1,8 @@
 // Card for every single food item
 import 'package:flutter/material.dart';
+import 'package:scale_kuwait_mobile_app/screens/all_items/component/NutraionFactContainer.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class FoodItemCard2 extends StatelessWidget {
   final String imageUrl;
@@ -72,7 +74,8 @@ class FoodItemCard2 extends StatelessWidget {
                     borderRadius: BorderRadius.circular(35),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('$imageUrl'),
+                      // image: AssetImage('$imageUrl'),
+                      image: CachedNetworkImageProvider('$imageUrl'),
                     ),
                   ),
                 ),
@@ -184,28 +187,10 @@ class FoodItemCard2 extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Carb',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : Color(0xFFFED47E)),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      '$carbAmount',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : gray50),
-                                    ),
-                                  ],
+                                NutrationFactContainer(
+                                  value: 123,
+                                  isPaused: isPaused,
+                                  nutrationName: "Carb",
                                 ),
                                 Column(
                                   children: [

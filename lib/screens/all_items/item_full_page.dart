@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import 'package:scale_kuwait_mobile_app/components/buttons/FillButton.dart';
 import 'package:scale_kuwait_mobile_app/screens/background_svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ItemFullPage extends StatefulWidget {
   final String imageUrl;
@@ -376,7 +377,9 @@ class _ItemFullPageState extends State<ItemFullPage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       image: DecorationImage(
-                          image: AssetImage('${widget.imageUrl}'),
+                          // image: AssetImage('${widget.imageUrl}'),
+                          image:
+                              CachedNetworkImageProvider('${widget.imageUrl}'),
                           fit: BoxFit.cover),
                     ),
                   ), //Photo Container
