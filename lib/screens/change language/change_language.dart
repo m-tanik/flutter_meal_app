@@ -27,8 +27,15 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: darkBG,
+        iconTheme: IconThemeData(
+          color: primaryColor, //change your color here
+        ),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,21 +44,14 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: primaryColor,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
                   SizedBox(
-                    height: 20,
+                    height: MediaQuery.of(context).size.height * 0.08,
                   ),
                   Text(
                     'Change Language',
-                    style: heading3Style,
+                    style: Theme.of(context).textTheme.headline3.merge(
+                          TextStyle(fontWeight: FontWeight.w700, color: gray50),
+                        ),
                   ),
                 ],
               ),
@@ -94,6 +94,9 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                 Navigator.pop(context);
               },
               text: 'Confirm',
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              textColor: gray50,
             )
           ],
         ),
@@ -134,10 +137,11 @@ class SelectLanguageCard extends StatelessWidget {
             children: [
               Text(
                 '$title',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: isEnable ? primaryColor : Colors.white,
-                ),
+                style: Theme.of(context).textTheme.headline5.merge(
+                      TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: isEnable ? primaryColor : Colors.white),
+                    ),
               ),
               SizedBox(
                 width: 30,

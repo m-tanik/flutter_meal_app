@@ -15,8 +15,15 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: darkBG,
+        iconTheme: IconThemeData(
+          color: primaryColor, //change your color here
+        ),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,27 +33,21 @@ class _ChangePasswordState extends State<ChangePassword> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: primaryColor,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.08,
                     ),
                     Text(
                       'Change password',
-                      style: heading3Style,
+                      style: Theme.of(context).textTheme.headline3.merge(
+                            TextStyle(
+                                fontWeight: FontWeight.w700, color: gray50),
+                          ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 20,
+                height: MediaQuery.of(context).size.height * 0.15,
               ),
               Container(
                 child: Column(
@@ -82,13 +83,17 @@ class _ChangePasswordState extends State<ChangePassword> {
                           onTap: () {},
                           child: Text(
                             'FORGOT PASSWORD?',
-                            style: TextStyle(fontSize: 12, color: primaryColor),
+                            style: Theme.of(context).textTheme.bodyText2.merge(
+                                  TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: primaryColor),
+                                ),
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 6,
+                      height: MediaQuery.of(context).size.height * 0.19,
                     ),
                   ],
                 ),
@@ -103,6 +108,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                   );
                 },
                 text: 'Update Password',
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+                textColor: gray50,
               ),
             ],
           ),
@@ -129,7 +137,9 @@ class ChangePasswordCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 40),
             child: Text(
               '$title',
-              style: TextStyle(color: gray50, fontSize: 13),
+              style: Theme.of(context).textTheme.bodyText2.merge(
+                    TextStyle(fontWeight: FontWeight.w600, color: gray300),
+                  ),
             ),
           ),
           SizedBox(

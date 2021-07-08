@@ -11,7 +11,7 @@ class ChangePassword3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,18 +28,22 @@ class ChangePassword3 extends StatelessWidget {
                   ),
                   Text(
                     'Verification email sent',
-                    style: heading3Style,
+                    style: Theme.of(context).textTheme.headline3.merge(
+                          TextStyle(fontWeight: FontWeight.w700, color: gray50),
+                        ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   Container(
                     child: Text(
                       'Please follow the instructions there, then press continue to reset your password',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: gray50,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1.merge(
+                            TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                                fontSize: 14),
+                          ),
                     ),
                   ),
                 ],
@@ -59,6 +63,9 @@ class ChangePassword3 extends StatelessWidget {
               },
               fillColor: gray700,
               text: 'Continue',
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              textColor: gray50,
             ),
           ],
         ),

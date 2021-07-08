@@ -9,8 +9,15 @@ class ChangePassword2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: darkBG,
+        iconTheme: IconThemeData(
+          color: primaryColor, //change your color here
+        ),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -19,21 +26,14 @@ class ChangePassword2 extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: primaryColor,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
                   SizedBox(
-                    height: 20,
+                    height: MediaQuery.of(context).size.height * 0.08,
                   ),
                   Text(
                     'Change password',
-                    style: heading3Style,
+                    style: Theme.of(context).textTheme.headline3.merge(
+                          TextStyle(fontWeight: FontWeight.w700, color: gray50),
+                        ),
                   ),
                 ],
               ),
@@ -41,10 +41,12 @@ class ChangePassword2 extends StatelessWidget {
             Container(
               child: Text(
                 'To change your password a verification email has to be sent to johnwilliam@email.com',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: gray50,
-                ),
+                style: Theme.of(context).textTheme.bodyText1.merge(
+                      TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: gray50,
+                          fontSize: 15),
+                    ),
               ),
             ),
             SizedBox(
@@ -61,6 +63,9 @@ class ChangePassword2 extends StatelessWidget {
               },
               fillColor: gray700,
               text: 'Send verification',
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              textColor: gray50,
             ),
           ],
         ),

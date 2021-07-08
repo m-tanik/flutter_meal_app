@@ -23,7 +23,7 @@ class _SettingPageMainState extends State<SettingPageMain> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 30,
+              height: MediaQuery.of(context).size.height * 0.07,
             ),
             SettingCards(
               cardTitle: 'Default Carb Level',

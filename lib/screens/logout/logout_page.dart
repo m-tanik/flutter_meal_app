@@ -14,7 +14,7 @@ class _LogoutPageState extends State<LogoutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +30,10 @@ class _LogoutPageState extends State<LogoutPage> {
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(
                       'Are you sure you want to',
-                      style: heading4Style,
+                      style: Theme.of(context).textTheme.headline3.merge(
+                            TextStyle(
+                                fontWeight: FontWeight.w400, color: gray50),
+                          ),
                     ),
                   ),
                   SizedBox(
@@ -40,7 +43,10 @@ class _LogoutPageState extends State<LogoutPage> {
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Text(
                       'Log Out?',
-                      style: heading3Style,
+                      style: Theme.of(context).textTheme.headline3.merge(
+                            TextStyle(
+                                fontWeight: FontWeight.w700, color: gray50),
+                          ),
                     ),
                   ),
                 ],
@@ -55,9 +61,12 @@ class _LogoutPageState extends State<LogoutPage> {
                     },
                     fillColor: Color(0xffFC4C3F),
                     text: 'Logout',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                    textColor: gray50,
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 18,
                   ),
                   FillButton(
                     onPressed: () {
@@ -65,6 +74,9 @@ class _LogoutPageState extends State<LogoutPage> {
                     },
                     fillColor: gray800,
                     text: 'Cancel',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                    textColor: gray50,
                   ),
                 ],
               ),
