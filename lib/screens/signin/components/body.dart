@@ -79,6 +79,7 @@ class Body extends StatelessWidget {
                         Icons.mail,
                         color: gray50,
                       ),
+                      hintText: 'Your email',
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(45, 18, 0, 4),
@@ -99,6 +100,10 @@ class Body extends StatelessWidget {
                         Icons.vpn_key,
                         color: gray50,
                       ),
+                      hintText: 'Your Password',
+                    ),
+                    SizedBox(
+                      height: 8,
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(22, 6, 0, 29),
@@ -125,6 +130,9 @@ class Body extends StatelessWidget {
                       },
                       text: "Login",
                       radius: 32,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      textColor: gray50,
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 43, 0, 0),

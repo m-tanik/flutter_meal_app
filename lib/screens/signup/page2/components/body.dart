@@ -12,101 +12,114 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Background(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(34, 56, 34, 0),
-        child: ListView(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
+        padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // Align(
+              //     //   alignment: Alignment.centerLeft,
+              //     //   //   child: IconButton(
+              //     //   //       alignment: Alignment.centerLeft,
+              //     //   //       icon: Icon(
+              //     //   //         Icons.arrow_back_outlined,
+              //     //   //         color: primaryColor,
+              //     //   //       ),
+              //     //   //       // TODO: Implement back navigation functionality
+              //     //   //       onPressed: () {}),
+              //     ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 27, 0, 0),
+                child: Align(
                   alignment: Alignment.centerLeft,
-                  icon: Icon(
-                    Icons.arrow_back_outlined,
-                    color: primaryColor,
+                  child: Text(
+                    "Tell Us Your Name",
+                    style: Theme.of(context).textTheme.headline3.merge(
+                        TextStyle(color: gray50, fontWeight: FontWeight.w700)),
                   ),
-                  // TODO: Implement back navigation functionality
-                  onPressed: () {}),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 27, 0, 0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Tell Us Your Name",
-                  style: Theme.of(context).textTheme.headline3.merge(
-                      TextStyle(color: gray50, fontWeight: FontWeight.w700)),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(45, 27, 0, 4),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "FIRST NAME",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .merge(TextStyle(color: gray200)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.12,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(45, 18, 0, 4),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "FIRST NAME",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .merge(TextStyle(color: gray200)),
+                  ),
                 ),
               ),
-            ),
-            CustomTextField(
-              icon: Icon(
-                Icons.perm_identity_outlined,
-                color: gray50,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(45, 18, 0, 4),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "MIDDLE NAME",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .merge(TextStyle(color: gray200)),
+              CustomTextField(
+                icon: Icon(
+                  Icons.perm_identity_outlined,
+                  color: gray50,
                 ),
               ),
-            ),
-            CustomTextField(
-              icon: Icon(
-                Icons.perm_identity_outlined,
-                color: gray50,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(45, 18, 0, 4),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "LAST NAME",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .merge(TextStyle(color: gray200)),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(45, 18, 0, 4),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "MIDDLE NAME",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .merge(TextStyle(color: gray200)),
+                  ),
                 ),
               ),
-            ),
-            CustomTextField(
-              icon: Icon(
-                Icons.perm_identity_outlined,
-                color: gray50,
+              CustomTextField(
+                icon: Icon(
+                  Icons.perm_identity_outlined,
+                  color: gray50,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 66, 0, 0),
-              child: FillButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SignupScreenPage3();
-                  }));
-                },
-                text: "Create Your Account",
-                radius: 32,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(45, 18, 0, 4),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "LAST NAME",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .merge(TextStyle(color: gray200)),
+                  ),
+                ),
               ),
-            ),
-          ],
+              CustomTextField(
+                icon: Icon(
+                  Icons.perm_identity_outlined,
+                  color: gray50,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.13,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 66, 0, 0),
+                child: FillButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return SignupScreenPage3();
+                    }));
+                  },
+                  text: "Create Your Account",
+                  radius: 32,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  textColor: gray50,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
