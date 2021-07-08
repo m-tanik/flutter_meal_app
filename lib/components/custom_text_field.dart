@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final Color fillColor;
   final Icon icon;
   final String hintText;
+  final int maxlines;
 
   const CustomTextField({
     Key key,
@@ -16,10 +17,12 @@ class CustomTextField extends StatelessWidget {
     this.fillColor = gray800,
     this.icon = const Icon(Icons.view_headline, color: gray50),
     this.hintText,
+    this.maxlines,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextField(
+      maxLines: maxlines,
       style: TextStyle(color: textColor),
       decoration: InputDecoration(
           border: OutlineInputBorder(

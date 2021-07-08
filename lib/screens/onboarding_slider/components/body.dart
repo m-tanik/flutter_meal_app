@@ -9,8 +9,21 @@ import 'package:scale_kuwait_mobile_app/screens/signup/page1/signup_screen.dart'
 import 'package:scale_kuwait_mobile_app/screens/welcome_message/welcome_message_screen.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +31,7 @@ class Body extends StatelessWidget {
     int totalPages = OnboardingItems.loadOnboardingItem().length;
     return Background(
       child: PageView.builder(
+          controller: pageController,
           itemCount: totalPages,
           itemBuilder: (BuildContext context, int index) {
             OnboardingItem oi = OnboardingItems.loadOnboardingItem()[index];
@@ -93,7 +107,11 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              pageController.jumpToPage(
+                                index + 1,
+                              );
+                            },
                             child: Text("Next >"),
                             style: TextButton.styleFrom(
                                 primary: primaryColor,

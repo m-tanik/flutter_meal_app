@@ -35,6 +35,7 @@ dependencies:
   shared_preferences: ^2.0.5
   fluttertoast: ^8.0.7
   flutter_slidable:
+  cached_network_image: ^3.0.0
 #  flutter_calendar_carousel:
 #    path: ./flutter_calendar_carousel-2.0.1-hijacking
 

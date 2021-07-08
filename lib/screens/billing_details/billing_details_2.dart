@@ -27,18 +27,23 @@ class _BillingDetails2State extends State<BillingDetails2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backwardsCompatibility: true,
         elevation: 0,
-        backgroundColor: darkBG,
+        backgroundColor: Colors.transparent,
       ),
       body: Background(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          padding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: MediaQuery.of(context).size.height * .05,
+            bottom: 15,
+          ),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   child: Column(
@@ -51,30 +56,39 @@ class _BillingDetails2State extends State<BillingDetails2> {
                           children: [
                             Text(
                               'Billing Details',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                              style:
+                                  Theme.of(context).textTheme.headline3.merge(
+                                        TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: gray50,
+                                        ),
+                                      ),
                             ),
                             Row(
                               children: [
                                 Text(
                                   '1',
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Text(
-                                  '2',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: primaryColor,
+                                Container(
+                                  child: Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: primaryColor,
+                                    ),
                                   ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: primaryColor.withOpacity(0.4),
+                                  ),
+                                  padding: EdgeInsets.all(8),
                                 ),
                               ],
                             ),
@@ -82,7 +96,7 @@ class _BillingDetails2State extends State<BillingDetails2> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 5,
+                        height: MediaQuery.of(context).size.height * .15,
                       ),
                       Container(
                         child: Column(
@@ -90,21 +104,39 @@ class _BillingDetails2State extends State<BillingDetails2> {
                           children: [
                             Text(
                               '${widget.packageName}- ${widget.proAmount}g protein',
-                              style: TextStyle(fontSize: 15),
+                              style:
+                                  Theme.of(context).textTheme.headline5.merge(
+                                        TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: gray200,
+                                        ),
+                                      ),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
                               '${widget.mealNumber} Meals + ${widget.snackNumber} Snacks',
-                              style: TextStyle(fontSize: 15),
+                              style:
+                                  Theme.of(context).textTheme.headline5.merge(
+                                        TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: gray200,
+                                        ),
+                                      ),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
                               '${widget.daysLeft} Days',
-                              style: TextStyle(fontSize: 15),
+                              style:
+                                  Theme.of(context).textTheme.headline5.merge(
+                                        TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: gray200,
+                                        ),
+                                      ),
                             ),
                             SizedBox(
                               height: 50,
@@ -122,7 +154,8 @@ class _BillingDetails2State extends State<BillingDetails2> {
                                     icon: Icons.vpn_key,
                                   ),
                                   SizedBox(
-                                    height: 30,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
                                   ),
                                 ],
                               ),
@@ -170,7 +203,12 @@ class BillingTextField extends StatelessWidget {
             padding: EdgeInsets.only(left: 40),
             child: Text(
               '$title',
-              style: TextStyle(color: gray50, fontSize: 15),
+              style: Theme.of(context).textTheme.bodyText2.merge(
+                    TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: gray300,
+                    ),
+                  ),
             ),
           ),
           SizedBox(
