@@ -18,10 +18,20 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                 children: [
                   // Image.asset('assets/images/avater.png'),
-                  CircleAvatar(
-                    radius: MediaQuery.of(context).size.width * .2,
-                    backgroundImage: CachedNetworkImageProvider(
-                        'https://images.unsplash.com/photo-1572374096159-87994f628560?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'),
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: MediaQuery.of(context).size.width * .2,
+                        backgroundImage: CachedNetworkImageProvider(
+                            'https://images.unsplash.com/photo-1572374096159-87994f628560?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'),
+                      ),
+                      CircleAvatar(
+                        backgroundColor: primaryColor,
+                        child: Icon(Icons.edit),
+                        radius: 25,
+                      ),
+                    ],
+                    alignment: Alignment.topRight,
                   ),
 
                   Padding(
@@ -79,9 +89,11 @@ class ProfileScreen extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline5
-                                      .merge(TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          color: gray50)),
+                                      .merge(
+                                        TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            color: gray50),
+                                      ),
                                 ),
                               ),
                               SizedBox(

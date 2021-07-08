@@ -14,8 +14,15 @@ class _EditProfileNameState extends State<EditProfileName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: darkBG,
+        iconTheme: IconThemeData(
+          color: primaryColor, //change your color here
+        ),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,27 +32,21 @@ class _EditProfileNameState extends State<EditProfileName> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: primaryColor,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.08,
                     ),
                     Text(
                       'Name',
-                      style: heading3Style,
+                      style: Theme.of(context).textTheme.headline3.merge(
+                            TextStyle(
+                                fontWeight: FontWeight.w700, color: gray50),
+                          ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 20,
+                height: MediaQuery.of(context).size.height * 0.15,
               ),
               Container(
                 child: Column(
@@ -56,7 +57,7 @@ class _EditProfileNameState extends State<EditProfileName> {
                       hintText: 'Your first name',
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     EditNameCard(
                       title: 'MIDDLE NAME',
@@ -64,7 +65,7 @@ class _EditProfileNameState extends State<EditProfileName> {
                       hintText: 'Your middle name',
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     EditNameCard(
                       title: 'LAST NAME',
@@ -72,7 +73,7 @@ class _EditProfileNameState extends State<EditProfileName> {
                       hintText: 'Your last name',
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 4,
+                      height: MediaQuery.of(context).size.height * 0.22,
                     ),
                   ],
                 ),
@@ -108,7 +109,9 @@ class EditNameCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 40),
             child: Text(
               '$title',
-              style: TextStyle(color: primaryColor, fontSize: 13),
+              style: Theme.of(context).textTheme.bodyText2.merge(
+                    TextStyle(fontWeight: FontWeight.w600, color: primaryColor),
+                  ),
             ),
           ),
           SizedBox(

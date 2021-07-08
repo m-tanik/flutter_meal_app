@@ -9,8 +9,15 @@ class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: darkBG,
+        iconTheme: IconThemeData(
+          color: primaryColor, //change your color here
+        ),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -18,21 +25,14 @@ class EditProfile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: primaryColor,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
                   SizedBox(
-                    height: 20,
+                    height: MediaQuery.of(context).size.height * 0.08,
                   ),
                   Text(
                     'Edit profile',
-                    style: heading3Style,
+                    style: Theme.of(context).textTheme.headline3.merge(
+                          TextStyle(fontWeight: FontWeight.w700, color: gray50),
+                        ),
                   ),
                 ],
               ),
@@ -115,14 +115,20 @@ class EditProfileCard extends StatelessWidget {
                 children: [
                   Text(
                     '$title',
-                    style: TextStyle(fontSize: 12, color: gray200),
+                    style: Theme.of(context).textTheme.bodyText1.merge(
+                          TextStyle(
+                              fontWeight: FontWeight.w400, color: gray200),
+                        ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                     '$value',
-                    style: heading5Style,
+                    style: Theme.of(context).textTheme.headline5.merge(
+                          TextStyle(
+                              fontWeight: FontWeight.w700, color: Colors.white),
+                        ),
                   ),
                 ],
               ),

@@ -18,7 +18,7 @@ class _SettingPageMainState extends State<SettingPageMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 1, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -123,11 +123,13 @@ class SettingCards extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: primaryColor,
           child: Icon(iconValue),
-          radius: 35,
+          radius: 42,
         ),
         title: Text(
           cardTitle,
-          style: heading5Style,
+          style: Theme.of(context).textTheme.bodyText1.merge(
+                TextStyle(fontWeight: FontWeight.w700, color: gray50),
+              ),
         ),
         trailing: Icon(
           Icons.arrow_forward_ios,

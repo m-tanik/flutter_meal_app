@@ -29,8 +29,15 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: darkBG,
+        iconTheme: IconThemeData(
+          color: primaryColor, //change your color here
+        ),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,21 +46,23 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: primaryColor,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
+                  // IconButton(
+                  //   icon: Icon(
+                  //     Icons.arrow_back,
+                  //     color: primaryColor,
+                  //   ),
+                  //   onPressed: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  // ),
                   SizedBox(
-                    height: 20,
+                    height: MediaQuery.of(context).size.height * 0.08,
                   ),
                   Text(
                     'Default carb level',
-                    style: heading3Style,
+                    style: Theme.of(context).textTheme.headline3.merge(
+                          TextStyle(fontWeight: FontWeight.w700, color: gray50),
+                        ),
                   ),
                 ],
               ),
@@ -127,6 +136,9 @@ class _DefaultCarbLevelState extends State<DefaultCarbLevel> {
             Container(
               child: FillButton(
                 text: 'Confirm',
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                textColor: gray50,
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -171,10 +183,16 @@ class CarbLevelCard extends StatelessWidget {
             children: [
               Text(
                 '$carbValue',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: isEnable ? primaryColor : Colors.white,
-                ),
+                // style: TextStyle(
+                //   fontSize: 20,
+                //   color: isEnable ? primaryColor : Colors.white,
+                // ),
+                style: Theme.of(context).textTheme.headline5.merge(
+                      TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: isEnable ? primaryColor : Colors.white,
+                      ),
+                    ),
               ),
               SizedBox(
                 width: 30,
