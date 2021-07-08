@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scale_kuwait_mobile_app/theme_data.dart';
 import 'package:scale_kuwait_mobile_app/screens/billing_details/billing_details_2.dart';
@@ -26,14 +27,20 @@ class _BillingDetailsState extends State<BillingDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backwardsCompatibility: true,
         elevation: 0,
-        backgroundColor: darkBG,
+        backgroundColor: Colors.transparent,
       ),
       body: Background(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          padding: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: MediaQuery.of(context).size.height * .1,
+            bottom: 15,
+          ),
           child: Container(
             child: SingleChildScrollView(
               child: Column(
@@ -45,20 +52,28 @@ class _BillingDetailsState extends State<BillingDetails> {
                       children: [
                         Text(
                           'Billing Details',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                          style: Theme.of(context).textTheme.headline3.merge(
+                                TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: gray50,
+                                ),
+                              ),
                         ),
                         Row(
                           children: [
-                            Text(
-                              '1',
-                              style: TextStyle(
-                                  color: primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
+                            Container(
+                              child: Text(
+                                '1',
+                                style: TextStyle(
+                                    color: primaryColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: primaryColor.withOpacity(0.4),
+                              ),
+                              padding: EdgeInsets.all(8),
                             ),
                             SizedBox(
                               width: 10,
@@ -66,7 +81,9 @@ class _BillingDetailsState extends State<BillingDetails> {
                             Text(
                               '2',
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: primaryColor),
                             ),
                           ],
                         ),
@@ -125,6 +142,7 @@ class _BillingDetailsState extends State<BillingDetails> {
                     title: 'OTHER DIRECTIONS',
                     hintText: 'Other details information',
                     icon: Icons.directions,
+                    maxlines: 3,
                   ),
                   SizedBox(
                     height: 40,
@@ -146,8 +164,8 @@ class _BillingDetailsState extends State<BillingDetails> {
                     },
                     child: Icon(
                       Icons.arrow_forward,
-                      size: 50.0,
-                      color: gray50,
+                      size: 35.0,
+                      color: Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -167,8 +185,9 @@ class BillingTextField extends StatelessWidget {
   final String title;
   final IconData icon;
   final String hintText;
+  final int maxlines;
 
-  BillingTextField({this.title, this.icon, this.hintText});
+  BillingTextField({this.title, this.icon, this.hintText, this.maxlines});
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +199,12 @@ class BillingTextField extends StatelessWidget {
             padding: EdgeInsets.only(left: 40),
             child: Text(
               '$title',
-              style: TextStyle(color: primaryColor, fontSize: 15),
+              style: Theme.of(context).textTheme.bodyText2.merge(
+                    TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: primaryColor,
+                    ),
+                  ),
             ),
           ),
           SizedBox(
@@ -192,6 +216,7 @@ class BillingTextField extends StatelessWidget {
               color: gray50,
             ),
             hintText: '$hintText',
+            maxlines: maxlines,
           ),
         ],
       ),
