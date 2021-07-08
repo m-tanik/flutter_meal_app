@@ -141,79 +141,25 @@ class FoodItemCard2 extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Cal',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : Color(0xFFFED47E)),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      '$calAmount',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : gray50),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Fat',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : Color(0xFFFED47E)),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      '$fatAmount',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : gray50),
-                                    ),
-                                  ],
+                                NutrationFactContainer(
+                                  value: calAmount,
+                                  isPaused: isPaused,
+                                  nutrationName: "Cal",
                                 ),
                                 NutrationFactContainer(
-                                  value: 123,
+                                  value: fatAmount,
+                                  isPaused: isPaused,
+                                  nutrationName: "Fat",
+                                ),
+                                NutrationFactContainer(
+                                  value: carbAmount,
                                   isPaused: isPaused,
                                   nutrationName: "Carb",
                                 ),
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Pro',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : Color(0xFFFED47E)),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      '$proAmount',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: isPaused
-                                              ? gray200.withOpacity(0.2)
-                                              : gray50),
-                                    ),
-                                  ],
+                                NutrationFactContainer(
+                                  value: proAmount,
+                                  isPaused: isPaused,
+                                  nutrationName: "Pro",
                                 ),
                               ],
                             ),
