@@ -24,6 +24,7 @@ class _AllItemsState extends State<AllItems> {
   int itemCounter = 0;
   bool userPicked = false;
   int userLimit = 2;
+  String categoryTitle = 'All';
 
   var listname = 'allItems';
 
@@ -140,6 +141,7 @@ class _AllItemsState extends State<AllItems> {
     itemCounter = 0;
     userPicked = false;
     showList = allItems;
+    categoryTitle = 'All';
   }
 
   // date selector / calender on top
@@ -261,17 +263,19 @@ class _AllItemsState extends State<AllItems> {
                   setState(() {
                     if (selectedCategory == 'All') {
                       showList = allItems;
+                      categoryTitle = 'All';
                     } else if (selectedCategory == 'Snacks') {
                       showList = snacks;
-                      print(showList);
+                      categoryTitle = 'Snacks';
                     } else if (selectedCategory == 'Lunch') {
                       showList = lunch;
-                      print(showList);
+                      categoryTitle = 'Lunch';
                     } else if (selectedCategory == 'Breakfast') {
                       showList = breakfast;
-                      print(showList);
+                      categoryTitle = 'Breakfast';
                     } else {
                       showList = allItems;
+                      categoryTitle = 'All';
                     }
                   });
                 },
@@ -453,7 +457,7 @@ class _AllItemsState extends State<AllItems> {
               Container(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'All',
+                  '$categoryTitle',
                   style: Theme.of(context).textTheme.headline3.merge(
                         TextStyle(
                           fontWeight: FontWeight.bold,

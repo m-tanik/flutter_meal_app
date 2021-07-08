@@ -17,7 +17,7 @@ class _SelectCategory2State extends State<SelectCategory2> {
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
       child: AlertDialog(
         backgroundColor: Colors.transparent.withOpacity(0),
         content: Column(
@@ -26,7 +26,12 @@ class _SelectCategory2State extends State<SelectCategory2> {
           children: [
             Text(
               'Select a Category',
-              style: heading5Style,
+              style: Theme.of(context).textTheme.headline5.merge(
+                    TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: gray300,
+                    ),
+                  ),
             ),
             SizedBox(
               height: 20,
@@ -52,7 +57,7 @@ class _SelectCategory2State extends State<SelectCategory2> {
                       SizedBox(
                         height: 5,
                       ),
-                      GestureDetector(
+                      CategoryItemButton(
                         onTap: () {
                           setState(() {
                             lunch = true;
@@ -62,23 +67,8 @@ class _SelectCategory2State extends State<SelectCategory2> {
                           });
                           Navigator.pop(context, selectedCategory);
                         },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.grid_view,
-                              size: 20,
-                              color: gray200,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'All',
-                              style: heading5Style,
-                            ),
-                          ],
-                        ),
+                        icon: Icons.grid_view,
+                        title: 'All',
                       ),
                       SizedBox(
                         height: 10,
@@ -87,7 +77,7 @@ class _SelectCategory2State extends State<SelectCategory2> {
                         thickness: 1,
                         color: gray200,
                       ),
-                      GestureDetector(
+                      CategoryItemButton(
                         onTap: () {
                           setState(() {
                             lunch = false;
@@ -97,23 +87,8 @@ class _SelectCategory2State extends State<SelectCategory2> {
                           });
                           Navigator.pop(context, selectedCategory);
                         },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.grain,
-                              size: 20,
-                              color: gray200,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Breakfast',
-                              style: heading5Style,
-                            ),
-                          ],
-                        ),
+                        icon: Icons.grain,
+                        title: 'Breakfast',
                       ),
                       SizedBox(
                         height: 10,
@@ -122,7 +97,7 @@ class _SelectCategory2State extends State<SelectCategory2> {
                         thickness: 1,
                         color: gray200,
                       ),
-                      GestureDetector(
+                      CategoryItemButton(
                         onTap: () {
                           setState(() {
                             lunch = true;
@@ -132,23 +107,8 @@ class _SelectCategory2State extends State<SelectCategory2> {
                           });
                           Navigator.pop(context, selectedCategory);
                         },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.volunteer_activism,
-                              size: 20,
-                              color: gray200,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Lunch',
-                              style: heading5Style,
-                            ),
-                          ],
-                        ),
+                        icon: Icons.volunteer_activism,
+                        title: 'Lunch',
                       ),
                       SizedBox(
                         height: 10,
@@ -157,7 +117,7 @@ class _SelectCategory2State extends State<SelectCategory2> {
                         thickness: 1,
                         color: gray200,
                       ),
-                      GestureDetector(
+                      CategoryItemButton(
                         onTap: () {
                           setState(() {
                             lunch = false;
@@ -167,23 +127,8 @@ class _SelectCategory2State extends State<SelectCategory2> {
                           });
                           Navigator.pop(context, selectedCategory);
                         },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.lunch_dining,
-                              size: 20,
-                              color: gray200,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Snacks',
-                              style: heading5Style,
-                            ),
-                          ],
-                        ),
+                        icon: Icons.lunch_dining,
+                        title: 'Snacks',
                       ),
                       SizedBox(
                         height: 5,
@@ -192,6 +137,49 @@ class _SelectCategory2State extends State<SelectCategory2> {
                   ),
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CategoryItemButton extends StatelessWidget {
+  final Function onTap;
+  final IconData icon;
+  final String title;
+
+  CategoryItemButton({
+    this.onTap,
+    this.icon,
+    this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              icon,
+              size: 20,
+              color: gray200,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.headline5.merge(
+                    TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: gray300,
+                    ),
+                  ),
             ),
           ],
         ),
