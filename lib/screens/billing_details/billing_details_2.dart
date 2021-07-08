@@ -139,7 +139,7 @@ class _BillingDetails2State extends State<BillingDetails2> {
                                       ),
                             ),
                             SizedBox(
-                              height: 50,
+                              height: MediaQuery.of(context).size.height * 0.13,
                             ),
                             Container(
                               child: Column(
@@ -155,7 +155,7 @@ class _BillingDetails2State extends State<BillingDetails2> {
                                   ),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
-                                        0.2,
+                                        0.21,
                                   ),
                                 ],
                               ),
